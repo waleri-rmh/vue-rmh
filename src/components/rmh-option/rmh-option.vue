@@ -41,10 +41,6 @@ export default {
       return l
     },
 
-    parentData () {
-      return this.parent ? this.parent.data : null
-    },
-
     isSelected () {
       return this.parent.selectedItem.value === this.item.value
     },
