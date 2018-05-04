@@ -1,0 +1,42 @@
+@font-face
+  font-family: 'Material Icons'
+  font-style: normal
+  font-weight: 400
+  src: local('Material Icons'),
+      local('MaterialIcons-Regular'),
+      url('../../assets/material-icons/material-icons-regular.woff2') format('woff2'),
+      url('../../assets/material-icons/material-icons-regular.woff') format('woff')
+
+@font-face
+  font-family: 'RMH Icons'
+  src: url('../../assets/material-icons/icomoon.woff?virkr') format('woff')
+  font-weight: normal
+  font-style: normal
+
+/**
+  * Based on Google guideline:
+  * https://google.github.io/material-design-icons/#icon-font-for-the-web
+  */
+.rmh-icon
+  color: inherit
+  font-family: 'Material Icons'
+  font-weight: normal
+  font-style: normal
+  font-size: 14px
+  display: inline-block
+  line-height: 1
+  text-transform: none
+  letter-spacing: normal
+  word-wrap: normal
+  white-space: nowrap
+  direction: ltr
+  -webkit-font-smoothing: antialiased
+  text-rendering: optimizeLegibility
+  -moz-osx-font-smoothing: grayscale
+  font-feature-settings: 'liga'
+
+  &.non-material
+    font-family: 'RMH Icons'
+
+    &:before
+      content: '\e900'
