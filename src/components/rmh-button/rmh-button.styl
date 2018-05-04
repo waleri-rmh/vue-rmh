@@ -1,0 +1,33 @@
+.rmh-button
+  flex: 1
+  margin: 5px 5px
+  padding: 0 10px
+  height: 40px
+  line-height: 40px
+  outline: none
+  font-size: inherit
+  font-family: inherit
+  font-weight: 400
+  transition: .3s ease
+  color: rgba(0,0,0,.54)
+  cursor: pointer
+
+  // default
+  border-radius: 5px
+  border: 1px solid transparent
+  background: transparent
+
+  &:hover
+    background: #eee
+    border-color: #eee
+
+  &.primary
+    border-color: #479ee8
+    background: #479ee8
+    font-weight: 500
+    color: #fff
+
+    &:hover
+      border-color: darken(#479ee8, 20%)
+      background: darken(#479ee8, 20%)
+

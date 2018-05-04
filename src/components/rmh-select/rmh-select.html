@@ -1,0 +1,8 @@
+<rmh-field class="rmh-select" :class="{ open: open }" ref="field">
+  <div class="options" @selected="select">
+    <slot></slot>
+  </div>
+  
+  <label v-if="label">{{ label }}</label>
+  <input readonly v-on="listeners" v-model="selectedItem.text" @focus="focus" @blur="blur" />
+</rmh-field>

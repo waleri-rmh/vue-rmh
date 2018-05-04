@@ -1,0 +1,6 @@
+<div class="rmh-option" :class="{ selected: isSelected }" @click.prevent="select">
+  <span>
+    {{ text }}
+    <slot v-if="!text"></slot>
+  </span>
+</div>
