@@ -42,7 +42,7 @@ export default {
     },
 
     isSelected () {
-      return this.parent.selectedItem.value === this.item.value
+      return this.parent && this.parent.selectedItem.value === this.item.value
     },
 
     item () {

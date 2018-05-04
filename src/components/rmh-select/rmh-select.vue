@@ -30,11 +30,7 @@ export default {
       value: null,
       text: ''
     },
-    open: false,
-    RmhSelect: {
-      value: null,
-      text: ''
-    }
+    open: false
   }),
 
   mounted () {
