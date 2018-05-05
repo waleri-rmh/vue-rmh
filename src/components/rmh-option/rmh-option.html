@@ -1,6 +1,7 @@
-<div class="rmh-option" :class="{ selected: isSelected }" @click.prevent="select">
-  <span>
+<div class="rmh-option" :class="{ selected: isSelected, 'with-icon': icon !== '' }" @click.prevent="select">
+  <div>
+    <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
     {{ text }}
     <slot v-if="!text"></slot>
-  </span>
+  </div>
 </div>

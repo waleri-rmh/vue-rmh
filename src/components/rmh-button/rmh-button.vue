@@ -2,14 +2,23 @@
 
 <script>
 import component from '../../mixins/component'
+import rmhIcon from '../../components/rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-button',
 
   mixins: [component],
 
+  components: {
+    rmhIcon
+  },
+
   props: {
     value: {
+      type: String,
+      default: ''
+    },
+    icon: {
       type: String,
       default: ''
     }

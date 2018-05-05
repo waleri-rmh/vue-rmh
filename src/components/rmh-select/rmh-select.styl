@@ -33,12 +33,14 @@
     overflow: hidden
     opacity: 0
 
-  .rmh-icon.arrow
-    color: rgba(0,0,0,.4)
-    font-size: 22px
-    align-self: flex-end
-    transition: .6s ease
-    cursor: pointer
+  .rmh-icon
+    
+    &.rmh-select-arrow
+      color: rgba(0,0,0,.4)
+      font-size: 22px
+      align-self: flex-end
+      transition: .6s ease
+      cursor: pointer
 
   &.open
     .options
@@ -51,7 +53,7 @@
       border-color: #ccc
       border-top: 1px solid #479ee8
 
-    .rmh-icon.arrow
+    .rmh-icon.rmh-select-arrow
       transform: rotateX(180deg)
       color: #479ee8
 

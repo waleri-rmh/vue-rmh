@@ -1,4 +1,5 @@
 <button class="rmh-button" v-on="listeners">
   {{ localValue }}
+  <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
   <slot v-if="!localValue"></slot>
 </button>

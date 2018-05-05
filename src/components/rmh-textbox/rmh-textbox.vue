@@ -3,6 +3,7 @@
 <script>
 import component from '../../mixins/component'
 import rmhField from '../../components/rmh-field/rmh-field'
+import rmhIcon from '../../components/rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-textbox',
@@ -10,7 +11,8 @@ export default {
   mixins: [component],
 
   components: {
-    rmhField
+    rmhField,
+    rmhIcon
   },
 
   props: {
@@ -19,6 +21,10 @@ export default {
       default: ''
     },
     label: {
+      type: String,
+      default: ''
+    },
+    icon: {
       type: String,
       default: ''
     }

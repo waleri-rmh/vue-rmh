@@ -3,6 +3,7 @@
   margin: 30px 0
   padding: 0
   height: 30px
+  max-height: 30px
   line-height: 30px
   border-top: 1px solid transparent
   border-bottom: 1px solid rgba(0,0,0,.54)
@@ -12,6 +13,11 @@
   font-size: 15px
   font-family: inherit
   transition: .5s ease
+  align-items: center
+
+  &.with-icon
+    input, label
+      padding-left: 25px
 
   label
     position: absolute
@@ -23,10 +29,18 @@
     
   &:not(.select).focused, &.filled
     label
+      padding: 0
       margin-top: -18px
       font-size: 11px
 
   &.focused
     label
       color: #479ee8
+
+  .rmh-icon
+    &.inline
+      position: absolute
+      pointer-events: none
+      padding-right: 4px
+      border-right: 1px solid #ddd
       

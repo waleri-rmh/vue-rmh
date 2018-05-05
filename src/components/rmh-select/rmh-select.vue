@@ -23,6 +23,10 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    icon: {
+      type: String,
+      default: ''
     }
   },
 

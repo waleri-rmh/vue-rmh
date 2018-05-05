@@ -15,7 +15,13 @@
   transition: .3s ease
   cursor: pointer
 
-  span
+  .rmh-icon.inline
+    position: static
+    margin: 0 5px
+
+  div
+    display: flex
+    align-items: center
     margin-left: 5px
 
     &:before
@@ -27,6 +33,6 @@
   &:hover, &.selected
     color: #479ee8
 
-    span:before
+    div:before
       margin-left: 0
       opacity: 1

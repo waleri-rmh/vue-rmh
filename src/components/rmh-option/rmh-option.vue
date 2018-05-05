@@ -2,11 +2,16 @@
 
 <script>
 import component from '../../mixins/component'
+import rmhIcon from '../../components/rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-option',
 
   mixins: [component],
+
+  components: {
+    rmhIcon
+  },
 
   props: {
     value: {
@@ -20,6 +25,10 @@ export default {
     selected: {
       type: Boolean,
       default: false
+    },
+    icon: {
+      type: String,
+      default: ''
     }
   },
 

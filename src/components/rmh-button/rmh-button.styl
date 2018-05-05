@@ -1,9 +1,10 @@
 .rmh-button
   flex: 1
+  display: inline-flex
+  align-items: center
   margin: 5px 5px
   padding: 0 10px
   height: 40px
-  line-height: 40px
   outline: none
   font-size: inherit
   font-family: inherit
@@ -16,6 +17,11 @@
   border-radius: 5px
   border: 1px solid transparent
   background: transparent
+
+  .rmh-icon
+    &.inline
+      pointer-events: none
+      margin-right: 5px
 
   &:hover
     background: #eee
