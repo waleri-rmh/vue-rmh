@@ -37,7 +37,7 @@ export default {
   computed: {
     listeners () {
       let l = { ...this.$listeners }
-      delete l.input
+      delete l.div
       return l
     },
 

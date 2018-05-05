@@ -4,5 +4,6 @@
   </div>
   
   <label v-if="label">{{ label }}</label>
-  <input readonly v-on="listeners" v-model="selectedItem.text" @focus="focus" @blur="blur" />
+  <input ref="input" readonly v-on="listeners" v-model="selectedItem.text" @focus="focus" @blur="blur" />
+  <rmh-icon class="arrow" @click.native="fakeFocus">keyboard_arrow_down</rmh-icon>
 </rmh-field>

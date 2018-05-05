@@ -17,6 +17,7 @@
   .options
     z-index: 999
     display: flex
+    align-self: flex-start
     flex-direction: column
     position: absolute
     left: 0
@@ -32,6 +33,13 @@
     overflow: hidden
     opacity: 0
 
+  .rmh-icon.arrow
+    color: rgba(0,0,0,.4)
+    font-size: 22px
+    align-self: flex-end
+    transition: .6s ease
+    cursor: pointer
+
   &.open
     .options
       opacity: 1
@@ -42,6 +50,10 @@
       box-shadow: 0 10px 20px -5px #ccc
       border-color: #ccc
       border-top: 1px solid #479ee8
+
+    .rmh-icon.arrow
+      transform: rotateX(180deg)
+      color: #479ee8
 
   &:not(.open)
     .options

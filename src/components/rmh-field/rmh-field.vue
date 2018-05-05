@@ -15,13 +15,18 @@ export default {
 
   methods: {
     focus (e) {
-      this.filled = e.target.value && e.target.value !== ''
+      this.filled = this.isFilled(e)
       this.focused = true
     },
 
     blur (e) {
-      this.filled = e.target.value && e.target.value !== ''
+      this.filled = this.isFilled(e)
       this.focused = false
+    },
+
+    isFilled (e) {
+      const value = e.target ? e.target.value : e.value
+      return value && value !== ''
     },
 
     inputMounted (val) {

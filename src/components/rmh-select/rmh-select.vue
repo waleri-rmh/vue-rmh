@@ -3,6 +3,7 @@
 <script>
 import component from '../../mixins/component'
 import rmhField from '../../components/rmh-field/rmh-field'
+import rmhIcon from '../../components/rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-select',
@@ -10,7 +11,8 @@ export default {
   mixins: [component],
 
   components: {
-    rmhField
+    rmhField,
+    rmhIcon
   },
 
   props: {
@@ -58,14 +60,18 @@ export default {
   methods: {
     focus (e) {
       this.open = true
-      this.$refs.field.focus(e)
+      this.$refs.field.focus(this.$refs.input)
     },
 
     blur (e) {
       setTimeout(() => {
         this.open = false
       }, 300)
-      this.$refs.field.blur(e)
+      this.$refs.field.blur(this.$refs.input)
+    },
+
+    fakeFocus (e) {
+      this.focus()
     },
 
     select (item) {
