@@ -27,6 +27,10 @@ export default {
     icon: {
       type: String,
       default: ''
+    },
+    bordered: {
+      type: Boolean,
+      default: false
     }
   },
 

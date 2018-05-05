@@ -21,7 +21,9 @@ export default {
 
     blur (e) {
       this.filled = this.isFilled(e)
-      this.focused = false
+      setTimeout(() => {
+        this.focused = false
+      }, 300)
     },
 
     isFilled (e) {

@@ -30,17 +30,36 @@
   &:not(.select).focused, &.filled
     label
       padding: 0
-      margin-top: -18px
+      margin-top: -22px
       font-size: 11px
 
   &.focused
     label
       color: #479ee8
 
-  .rmh-icon
+  > .rmh-icon
     &.inline
       position: absolute
       pointer-events: none
       padding-right: 4px
       border-right: 1px solid #ddd
+
+  .rmh-button
+    flex: 0
+    align-self: flex-start
+    margin: 0
+    height: 30px
+    line-height: 30px
+    border-radius: 0 5px 0 0
+
+    &:not(.primary)
+      border-left: 1px solid rgba(230, 230, 230, .5)
+
+  &.bordered
+    border: 1px solid rgba(100, 100, 100, .4)
+    border-radius: 6px
+    padding-left: 5px
+
+    .rmh-button:not(.primary)
+      border-color: rgba(0, 0, 0, .54)
       

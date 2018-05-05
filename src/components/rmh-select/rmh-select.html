@@ -1,4 +1,4 @@
-<rmh-field class="rmh-select" :class="{ open: open, 'with-icon': icon !== '' }" ref="field">
+<rmh-field class="rmh-select" :class="{ open: open, 'with-icon': icon !== '', bordered: bordered }" ref="field">
   <div class="options" @selected="select">
     <slot></slot>
   </div>
@@ -7,4 +7,5 @@
   <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
   <input ref="input" readonly v-on="listeners" v-model="selectedItem.text" @focus="focus" @blur="blur" />
   <rmh-icon class="rmh-select-arrow" @click.native="fakeFocus">keyboard_arrow_down</rmh-icon>
+  <slot name="button"></slot>
 </rmh-field>
