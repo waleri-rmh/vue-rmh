@@ -1,3 +1,5 @@
+rmh-color-primary = #479ee8
+
 .rmh-field
   display: flex
   margin: 30px 0
@@ -6,63 +8,63 @@
   max-height: 30px
   line-height: 30px
   border-top: 1px solid transparent
-  border-bottom: 1px solid rgba(0,0,0,.54)
+  border-bottom: 1px solid transparent
   background: transparent
-  color: rgba(0,0,0,.54)
+  color: rgba(0, 0, 0, .54)
   font-weight: 400
   font-size: 15px
   font-family: inherit
   transition: .5s ease
   align-items: center
 
-  &.with-icon
-    input, label
-      padding-left: 25px
+  &:not(.no-field)
+    border-bottom: 1px solid rgba(0, 0, 0, .54)
 
-  label
-    position: absolute
-    pointer-events: none
-    transition: .2s ease
+    &.with-icon
+      input, label
+        padding-left: 25px
 
-  &.focused
-    border-bottom-color: #479ee8
-    
-  &:not(.select).focused, &.filled
     label
-      padding: 0
-      margin-top: -22px
-      font-size: 11px
-
-  &.focused
-    label
-      color: #479ee8
-
-  > .rmh-icon
-    &.inline
+      align-self: flex-start
       position: absolute
       pointer-events: none
-      padding-right: 4px
-      border-right: 1px solid #ddd
+      transition: .2s ease
 
-  .rmh-button
-    flex: 0
-    align-self: flex-start
-    margin: 0
-    height: 30px
-    line-height: 30px
-    border-radius: 0 5px 0 0
+    &.focused
+      border-bottom-color: rmh-color-primary
+      
+    &:not(.select).focused, &.filled
+      label
+        padding: 0
+        margin-top: -22px
+        font-size: 11px
 
-    &:not(.primary)
-      border-left: 1px solid rgba(230, 230, 230, .5)
+    &.focused
+      label
+        color: rmh-color-primary
 
-  &.bordered
-    border: 1px solid rgba(100, 100, 100, .4)
-    border-radius: 6px
-    padding-left: 5px
+    > .rmh-icon
+      &.inline
+        position: absolute
+        pointer-events: none
+        padding-right: 4px
+        border-right: 1px solid #ddd
 
     .rmh-button
-      border-radius: 0 5px 5px 0
-      
+      flex: 0
+      align-self: flex-start
+      margin: 0
+      height: 30px
+      line-height: 30px
+      border-radius: 0 5px 0 0
+
       &:not(.primary)
-       border-color: rgba(0, 0, 0, .54)
-      
+        border-left: 1px solid rgba(230, 230, 230, .5)
+
+    &.bordered
+      border: 1px solid rgba(100, 100, 100, .4)
+      border-radius: 6px
+      padding-left: 5px
+
+      .rmh-button:not(.primary)
+        border-radius: 0 5px 5px 0

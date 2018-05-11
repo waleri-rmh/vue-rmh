@@ -1,12 +1,71 @@
+rmh-color-primary = #479ee8
+rmh-checkbox-size = 18px
+rmh-checkbox-touch-size = 48px
+
 .rmh-checkbox
-  flex: 1
-  margin: 0
-  padding: 0
-  border: 0px none
-  background: transparent
-  color: rgba(0,0,0,.54)
-  outline: none
-  font-size: inherit
-  font-family: inherit
-  font-weight: inherit
-  
+  position: relative
+
+  &:not(.disabled)
+    cursor: pointer
+    
+    label
+      cursor: pointer
+      display: flex
+      align-items: center
+
+      &:after
+        color: #9B3C3C
+      
+  .checkbox-container
+    display: flex
+    align-items: center
+    justify-content: center
+    width: rmh-checkbox-size
+    min-width: rmh-checkbox-size
+    height: rmh-checkbox-size
+    position: relative
+    border-radius: 3px
+    color: transparent
+    border: 2px solid rmh-color-primary
+    transition: .3s ease
+    
+    .rmh-icon
+      font-size: 16px
+      font-weight: bold
+
+    &:focus
+      outline: none
+
+    input
+      position: absolute
+      left: -999em
+
+  label
+    height: rmh-checkbox-size
+    padding-left: 16px
+    position: relative
+    line-height: rmh-checkbox-size
+
+  &.checked
+    .checkbox-container
+      background-color: rmh-color-primary
+      color: #fff
+
+  &.disabled
+
+    .checkbox-container
+      border-color: #ccc
+      color: #ccc
+
+    label
+      color: #ccc
+
+  &.required
+    label:after
+      position: absolute
+      top: 2px
+      right: 0
+      transform: translateX(calc(100% + 2px))
+      content: "*"
+      line-height: 1em
+      vertical-align: top
