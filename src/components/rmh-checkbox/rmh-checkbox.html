@@ -1,0 +1,6 @@
+<rmh-field ref="field" :class="{ 'with-icon': icon !== '', bordered: bordered }">
+  <label v-if="label && label !== ''">{{ label }}</label>
+  <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
+  <input class="rmh-checkbox" v-on="listeners" v-model="localValue" @focus="focus" @blur="blur" />
+  <slot name="button"></slot>
+</rmh-field>
