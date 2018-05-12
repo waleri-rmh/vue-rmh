@@ -27,6 +27,12 @@
     background: #eee
     border-color: rgba(230, 230, 230, .5)
 
+  &[disabled="disabled"]
+    background: transparent
+    border-color: transparent
+    color: #aaa
+    cursor: default
+
   &.primary
     border-color: #479ee8
     background: #479ee8
@@ -37,3 +43,8 @@
       border-color: darken(#479ee8, 20%)
       background: darken(#479ee8, 20%)
 
+    &[disabled="disabled"]
+      background: #f5f5f5
+      border-color: #f5f5f5
+      color: #aaa
+      cursor: default
