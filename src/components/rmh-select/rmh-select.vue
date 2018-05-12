@@ -86,7 +86,8 @@ export default {
 
     fakeFocus (e) {
       if (this.disabled) return
-      this.focus()
+      if (!this.open)
+        this.$refs.input.focus()
     },
 
     select (item) {

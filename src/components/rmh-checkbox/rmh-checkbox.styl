@@ -1,5 +1,5 @@
 rmh-color-primary = #479ee8
-rmh-checkbox-size = 18px
+rmh-checkbox-size = 16px
 rmh-checkbox-touch-size = 48px
 
 .rmh-checkbox
@@ -28,15 +28,33 @@ rmh-checkbox-touch-size = 48px
     position: relative
     border-radius: 3px
     color: transparent
-    border: 2px solid rmh-color-primary
+    border: 2px solid #aaa
     transition: .3s ease
+
+    &:focus
+      outline: none
+
+    &:before
+      content: ' '
+      position: absolute
+      width: rmh-checkbox-touch-size
+      height: rmh-checkbox-touch-size
+      top: 50%
+      left: 50%
+      z-index: 11
+      border-radius: 50%
+      transform: translate(-50%, -50%)
+      opacity: 0
+      transition: .4s cubic-bezier(.55, 0, .55, .2), opacity 1s
+
+    &:active:before
+      background: rmh-color-primary
+      opacity: .2
+      transition: 0s
     
     .rmh-icon
       font-size: 16px
       font-weight: bold
-
-    &:focus
-      outline: none
 
     input
       position: absolute
@@ -44,13 +62,14 @@ rmh-checkbox-touch-size = 48px
 
   label
     height: rmh-checkbox-size
-    padding-left: 16px
+    padding-left: 12px
     position: relative
     line-height: rmh-checkbox-size
 
   &.checked
     .checkbox-container
       background-color: rmh-color-primary
+      border-color: rmh-color-primary
       color: #fff
 
   &.disabled
@@ -72,3 +91,7 @@ rmh-checkbox-touch-size = 48px
       content: "*"
       line-height: 1em
       vertical-align: top
+
+  .checkbox-container
+    .rmh-icon
+      font-size: rmh-checkbox-size - 2px
