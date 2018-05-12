@@ -18,6 +18,10 @@ export default {
       type: String,
       default: ''
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     icon: {
       type: String,
       default: ''

@@ -20,6 +20,9 @@ rmh-color-primary = #479ee8
   &:not(.no-field)
     border-bottom: 1px solid rgba(0, 0, 0, .54)
 
+    &.disabled
+      border-bottom: 1px solid #ccc
+
     &.with-icon
       input, label
         padding-left: 25px
@@ -66,5 +69,11 @@ rmh-color-primary = #479ee8
       border-radius: 6px
       padding-left: 5px
 
+      &.disabled
+        border-color: #ccc
+
       .rmh-button:not(.primary)
         border-radius: 0 5px 5px 0
+
+  &.disabled
+    color: #ccc

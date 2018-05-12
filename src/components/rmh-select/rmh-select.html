@@ -1,4 +1,4 @@
-<rmh-field class="rmh-select" :class="{ open: open, 'with-icon': icon !== '', bordered: bordered }" ref="field">
+<rmh-field class="rmh-select" :class="{ open: open, 'with-icon': icon !== '', bordered: bordered, disabled: disabled }" ref="field">
   <div class="options" @selected="select">
     <slot></slot>
   </div>

@@ -28,6 +28,10 @@ export default {
       type: String,
       default: ''
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     bordered: {
       type: Boolean,
       default: false

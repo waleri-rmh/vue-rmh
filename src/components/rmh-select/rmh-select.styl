@@ -33,14 +33,12 @@
     overflow: hidden
     opacity: 0
 
-  .rmh-icon
-    
-    &.rmh-select-arrow
-      color: rgba(0,0,0,.4)
-      font-size: 22px
-      margin-right: 5px
-      transition: .6s ease
-      cursor: pointer
+  .rmh-select-arrow
+    color: rgba(0,0,0,.4)
+    font-size: 22px
+    margin-right: 5px
+    transition: .6s ease
+    cursor: pointer
 
   &.open
     .options
@@ -60,3 +58,11 @@
   &:not(.open)
     .options
       pointer-events: none
+
+  &.disabled
+    cursor: default
+
+    input
+    .rmh-select-arrow
+      cursor: default
+      color: #ccc

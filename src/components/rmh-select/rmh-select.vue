@@ -28,6 +28,10 @@ export default {
       type: String,
       default: ''
     },
+    disabled: {
+      type: Boolean,
+      default: false
+    },
     bordered: {
       type: Boolean,
       default: false
@@ -67,11 +71,13 @@ export default {
 
   methods: {
     focus (e) {
+      if (this.disabled) return
       this.open = true
       this.$refs.field.focus(this.$refs.input)
     },
 
     blur (e) {
+      if (this.disabled) return
       setTimeout(() => {
         this.open = false
       }, 300)
@@ -79,6 +85,7 @@ export default {
     },
 
     fakeFocus (e) {
+      if (this.disabled) return
       this.focus()
     },
 
