@@ -1,9 +1,9 @@
 <template src="./rmh-textbox.html"></template>
 
 <script>
-import component from '../../mixins/component'
-import rmhField from '../../components/rmh-field/rmh-field'
-import rmhIcon from '../../components/rmh-icon/rmh-icon'
+import component from '../../../mixins/component'
+import rmhField from '../rmh-field/rmh-field'
+import rmhIcon from '../rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-textbox',

@@ -1,3 +1,5 @@
+@import '../../../styles/variables'
+
 .rmh-select
   position: relative
 
@@ -7,7 +9,7 @@
     padding: 0
     border: 0px none
     background: transparent
-    color: rgba(0,0,0,.54)
+    color: rmh-color-default
     outline: none
     font-size: inherit
     font-family: inherit
@@ -23,7 +25,7 @@
     left: 0
     right: 0
     margin-top: 30px
-    background: #fff
+    background: rmh-color-white
     border: 1px solid transparent
     border-radius: 0 0 5px 5px
     color: inherit
@@ -34,7 +36,7 @@
     opacity: 0
 
   .rmh-select-arrow
-    color: rgba(0,0,0,.4)
+    color: rmh-color-default-lighter
     font-size: 22px
     margin-right: 5px
     transition: .6s ease
@@ -47,13 +49,13 @@
       transition: .5s ease
       max-height: 200px
       overflow: auto
-      box-shadow: 0 10px 20px -5px #ccc
-      border-color: #ccc
-      border-top: 1px solid #479ee8
+      box-shadow: 0 10px 20px -5px rmh-color-grey
+      border-color: rmh-color-grey
+      border-top: 1px solid rmh-color-primary
 
     .rmh-icon.rmh-select-arrow
       transform: rotateX(180deg)
-      color: #479ee8
+      color: rmh-color-primary
 
   &:not(.open)
     .options
@@ -65,4 +67,4 @@
     input
     .rmh-select-arrow
       cursor: default
-      color: #ccc
+      color: rmh-color-grey

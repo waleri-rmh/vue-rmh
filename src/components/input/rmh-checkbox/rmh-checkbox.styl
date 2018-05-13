@@ -1,4 +1,5 @@
-rmh-color-primary = #479ee8
+@import '../../../styles/variables'
+
 rmh-checkbox-size = 16px
 rmh-checkbox-touch-size = 48px
 
@@ -16,7 +17,7 @@ rmh-checkbox-touch-size = 48px
       align-items: center
 
       &:after
-        color: #9B3C3C
+        color: rmh-color-red
       
   .checkbox-container
     display: flex
@@ -28,7 +29,7 @@ rmh-checkbox-touch-size = 48px
     position: relative
     border-radius: 3px
     color: transparent
-    border: 2px solid #aaa
+    border: 2px solid rmh-color-grey-darker
     transition: .3s ease
 
     &:focus
@@ -70,17 +71,17 @@ rmh-checkbox-touch-size = 48px
     .checkbox-container
       background-color: rmh-color-primary
       border-color: rmh-color-primary
-      color: #fff
+      color: rmh-color-white
 
   &.disabled
 
     .checkbox-container
-      border-color: #ccc
-      color: #ccc
+      border-color: rmh-color-grey
+      color: rmh-color-grey
       cursor: default
 
     label
-      color: #ccc
+      color: rmh-color-grey
 
   &.required
     label:after

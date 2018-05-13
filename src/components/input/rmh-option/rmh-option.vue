@@ -1,8 +1,8 @@
 <template src="./rmh-option.html"></template>
 
 <script>
-import component from '../../mixins/component'
-import rmhIcon from '../../components/rmh-icon/rmh-icon'
+import component from '../../../mixins/component'
+import rmhIcon from '../rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-option',
