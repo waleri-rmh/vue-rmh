@@ -1,4 +1,4 @@
-<template src="./rmh-textbox.html"></template>
+<template src="./rmh-radio.html"></template>
 
 <script>
 import component from '../../mixins/component'
@@ -6,7 +6,7 @@ import rmhField from '../../components/rmh-field/rmh-field'
 import rmhIcon from '../../components/rmh-icon/rmh-icon'
 
 export default {
-  name: 'rmh-textbox',
+  name: 'rmh-radio',
 
   mixins: [component],
 
@@ -16,15 +16,17 @@ export default {
   },
 
   props: {
-    value: {
+    model: [String, Number, Boolean],
+    id: {
       type: String,
-      default: ''
+      default: null
+    },
+    name: [String, Number],
+    value: {
+      type: [String, Number, Boolean],
+      default: 'on'
     },
     label: {
-      type: String,
-      default: ''
-    },
-    icon: {
       type: String,
       default: ''
     },
@@ -32,23 +34,28 @@ export default {
       type: Boolean,
       default: false
     },
-    bordered: {
+    required: {
       type: Boolean,
       default: false
     },
-    required: {
+    inline: {
       type: Boolean,
       default: false
     }
   },
 
+  model: {
+    prop: 'model',
+    event: 'change'
+  },
+
   data: () => ({
-    localValue: ''
+    uId: null
   }),
 
   mounted () {
-    this.localValue = this.value
     this.$refs.field.inputMounted(this.value)
+    this.uId = this.id ? this.id : 'rmh-radio-' + this._uid
   },
 
   computed: {
@@ -58,22 +65,17 @@ export default {
       return l
     },
 
+    isSelected () {
+      return this.model === this.value
+    },
+
     classes () {
       return {
-        'with-icon': this.icon !== '',
-        'bordered': this.bordered,
+        'checked': this.isSelected,
         'disabled': this.disabled,
-        'required': this.required
+        'required': this.required,
+        'inline': this.inline
       }
-    }
-  },
-
-  watch: {
-    localValue (val) {
-      this.$emit('input', val)
-    },
-    value (val) {
-      this.localValue = val
     }
   },
 
@@ -84,9 +86,13 @@ export default {
 
     blur (e) {
       this.$refs.field.blur(e)
+    },
+
+    toggle (e) {
+      this.$emit('change', this.value)
     }
   }
 }
 </script>
 
-<style src="./rmh-textbox.styl" lang="stylus"></style>
+<style src="./rmh-radio.styl" lang="stylus"></style>

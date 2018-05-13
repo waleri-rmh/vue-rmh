@@ -35,6 +35,10 @@ export default {
     bordered: {
       type: Boolean,
       default: false
+    },
+    required: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -57,6 +61,16 @@ export default {
       let l = { ...this.$listeners }
       delete l.input
       return l
+    },
+
+    classes () {
+      return {
+        'open': this.open,
+        'with-icon': this.icon !== '',
+        'bordered': this.bordered,
+        'disabled': this.disabled,
+        'required': this.required
+      }
     }
   },
 

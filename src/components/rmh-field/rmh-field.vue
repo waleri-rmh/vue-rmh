@@ -6,6 +6,13 @@ import component from '../../mixins/component.vue'
 export default {
   name: 'rmh-field',
 
+  props: {
+    static: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   mixins: [component],
 
   data: () => ({

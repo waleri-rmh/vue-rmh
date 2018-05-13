@@ -30,15 +30,15 @@ export default {
       type: String,
       default: ''
     },
-    icon: {
-      type: String,
-      default: ''
-    },
     disabled: {
       type: Boolean,
       default: false
     },
     required: {
+      type: Boolean,
+      default: false
+    },
+    inline: {
       type: Boolean,
       default: false
     }
@@ -54,7 +54,6 @@ export default {
   }),
 
   mounted () {
-    this.localValue = this.value
     this.$refs.field.inputMounted(this.value)
     this.uId = this.id ? this.id : 'rmh-checkbox-' + this._uid
   },
@@ -86,21 +85,13 @@ export default {
       return typeof this.model === 'boolean'
     },
 
-    checkClasses () {
+    classes () {
       return {
         'checked': this.isSelected,
         'disabled': this.disabled,
-        'required': this.required
+        'required': this.required,
+        'inline': this.inline
       }
-    }
-  },
-
-  watch: {
-    localValue (val) {
-      this.$emit('input', val)
-    },
-    value (val) {
-      this.localValue = val
     }
   },
 

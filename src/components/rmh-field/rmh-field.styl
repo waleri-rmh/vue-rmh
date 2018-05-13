@@ -19,6 +19,14 @@ rmh-color-primary = #479ee8
   transition: .5s ease
   align-items: center
 
+  &.rmh-radio,
+  &.rmh-checkbox
+    margin: 10px 0
+
+  &.inline
+    display: inline-flex
+    margin-right: 10px
+
   &:not(.no-field)
     border-bottom: 1px solid rgba(0, 0, 0, .54)
 
@@ -34,6 +42,8 @@ rmh-color-primary = #479ee8
       position: absolute
       pointer-events: none
       transition: .2s ease
+      line-height: normal
+      align-self: center
 
     &.focused
       border-bottom-color: rmh-color-primary
@@ -79,3 +89,13 @@ rmh-color-primary = #479ee8
 
   &.disabled
     color: #ccc
+
+  &.required
+    label:after
+      position: absolute
+      top: 0
+      right: 0
+      transform: translateX(calc(100% + 2px))
+      content: '*'
+      line-height: 1em
+      vertical-align: top

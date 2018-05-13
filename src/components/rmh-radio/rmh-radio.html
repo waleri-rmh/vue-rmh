@@ -1,0 +1,10 @@
+<rmh-field static class="rmh-radio no-field" ref="field" v-on="listeners" :class="classes">
+  <div class="radio-container" @click.stop="toggle">
+    <input type="radio" @focus="focus" @blur="blur" v-bind="{ id: uId, name, disabled, required, value }">
+  </div>
+
+  <label :for="uId" v-if="$slots.default || label" @click.prevent="toggle">
+    {{ label }}
+    <slot />
+  </label>
+</rmh-field>
