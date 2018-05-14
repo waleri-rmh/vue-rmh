@@ -1,0 +1,21 @@
+@import '../../../styles/variables'
+
+.rmh-list-item
+  display: flex
+  align-items: center
+  min-height: 48px
+  padding: 4px 16px
+  overflow: hidden
+
+  &:after
+    transition: transform .3s, opacity .5s
+
+  .rmh-icon
+    margin-right: 15px
+    font-size: 18px
+
+  &.link
+    cursor: pointer
+
+    :not(.rmh-icon)
+      color: rmh-color-primary-darker
