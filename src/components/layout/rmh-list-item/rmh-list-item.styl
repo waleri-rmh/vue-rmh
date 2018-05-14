@@ -6,6 +6,8 @@
   min-height: 48px
   padding: 4px 16px
   overflow: hidden
+  transition: .1s ease
+  cursor: default
 
   &:after
     transition: transform .3s, opacity .5s
@@ -19,3 +21,10 @@
 
     :not(.rmh-icon)
       color: rmh-color-primary-darker
+
+    &:hover
+      background: rmh-color-primary
+      color: rmh-color-white
+
+      *
+        color: rmh-color-white

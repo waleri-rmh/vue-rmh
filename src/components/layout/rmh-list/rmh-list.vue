@@ -4,7 +4,22 @@
 import component from '../../../mixins/component'
 
 export default {
-  name: 'rmh-list'
+  name: 'rmh-list',
+
+  props: {
+    withDivider: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    classes () {
+      return {
+        'width-divider': this.withDivider
+      }
+    }
+  }
 }
 </script>
 

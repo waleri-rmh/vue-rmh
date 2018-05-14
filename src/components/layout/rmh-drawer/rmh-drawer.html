@@ -1,4 +1,4 @@
-<div class="rmh-drawer" :class="{ right: right, open: open, persistent: persistent }">
+<div class="rmh-drawer" :class="{ right: right, open: open, persistent: persistent }" v-bind="$attrs" v-on="$listeners">
   <div v-if="!persistent" class="wall" @click="wallClick"></div>
   <div class="rmh-drawer-content">
     <slot></slot>
