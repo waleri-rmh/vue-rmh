@@ -6,6 +6,13 @@ import component from '../../../mixins/component'
 export default {
   name: 'rmh-toolbar',
 
+  props: {
+    fixed: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   computed: {
     hasDefaultSlot () {
       return !!this.$slots.default
