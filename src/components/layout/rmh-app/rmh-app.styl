@@ -1,0 +1,35 @@
+@import '../../../styles/variables'
+
+.rmh-app
+  display: flex
+  flex-direction: row
+  width: 100vw
+  min-height: 100vh
+  height: 100vh
+
+  .rmh-drawer.persistent
+    position: relative
+    order: 1
+    flex: 0
+
+    &.right
+      order: 3
+
+  > .rmh-app-container
+    flex: 1
+    order: 2
+
+    > .rmh-toolbar
+      flex: 1 100%
+
+    > .rmh-content
+      flex: 3 0px
+      width: 100%
+
+  &.fixed-toolbar
+    margin-top: 64px
+
+    > .rmh-app-container
+
+      > .rmh-toolbar
+        position: fixed
