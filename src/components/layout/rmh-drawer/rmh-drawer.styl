@@ -1,0 +1,88 @@
+@import '../../../styles/variables'
+
+.rmh-drawer
+  position: absolute
+  width: 0
+  height: 0
+
+  .wall
+    position: fixed
+    left: 0
+    top: 0
+    bottom: 0
+    display: flex
+    position: fixed
+    background: alpha(rmh-color-default, .5)
+    color: rmh-color-default
+    font-weight: normal
+    font-style: normal
+    font-size: inherit
+    line-height: 1
+    z-index: 10001
+    right: 999em
+    opacity: 0
+    transition: opacity .5s ease
+
+  .rmh-drawer-content
+    opacity: 0
+    position: fixed
+    display: flex
+    width: 0
+    top: 0
+    bottom: 0
+    height: 100%
+    background: rmh-color-white
+    flex-direction: column
+    align-items: flex-start
+    transition: .5s ease
+    overflow: hidden
+    z-index: 10002
+
+    > .rmh-list
+      width: 100%
+      overflow: hidden
+
+      .rmh-list-item
+        overflow: hidden
+
+  &.persistent
+    height: 100%
+    transition: .5s ease
+    z-index: 9999
+
+    .rmh-drawer-content
+      position: relative
+
+  &:not(.right)
+    .rmh-drawer-content
+      right: auto
+      left: 0
+
+  &.right
+    .rmh-drawer-content
+      left: auto
+      right: 0
+
+  &.open
+
+    .wall
+      opacity: 1
+      right: 0
+
+    .rmh-drawer-content
+      opacity: 1
+      width: 230px
+      border-right: 1px solid rmh-color-grey-lighter
+
+    &.persistent
+      width: 230px
+
+    &.right
+      .rmh-drawer-content
+        opacity: 1
+        width: 230px
+        border: none
+        border-left: 1px solid rmh-color-grey-lighter
+
+  &.right
+    justify-content: flex-end
