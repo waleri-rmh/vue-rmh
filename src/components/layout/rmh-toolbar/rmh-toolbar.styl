@@ -1,8 +1,41 @@
 @import '../../../styles/variables'
 
 .rmh-toolbar
-  color: #333
+  display: flex
+  align-items: center
+  justify-content: space-between
+  position: relative
+  background: rmh-color-grey-lighter
+  color: rmh-color-default
   font-weight: normal
   font-style: normal
   font-size: inherit
   line-height: 1
+  padding: 0 16px
+  width: 100%
+  min-height: 64px
+  box-shadow: 0 10px 20px -10px rmh-color-default
+  box-sizing: border-box
+
+  &.primary
+    background: rmh-color-primary
+    color: rmh-color-white
+
+  .title
+    display: inline-block
+    margin: 0
+    padding: 0
+    margin-left: 24px
+
+  .rmh-button
+    margin: 0
+    display: inline-flex
+    color: #fff
+
+  .rmh-icon
+    font-size: 18px
+
+  > *
+    margin: 0 5px
+    flex: 1
+    max-width: fit-content
