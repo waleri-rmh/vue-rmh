@@ -26,10 +26,22 @@ export default {
   },
 
   mounted () {
-    if (this.fixedToolbar) {
-      const toolbar = document.querySelector('.rmh-app > .rmh-app-container > .rmh-toolbar')
-      const content = document.querySelector('.rmh-app > .rmh-app-container > .rmh-content')
-      content.style.height = 'calc(100% - ' + toolbar.clientHeight + 'px)'
+    this.calculateContentHeight()
+  },
+
+  updated () {
+    this.calculateContentHeight()
+  },
+
+  methods: {
+    calculateContentHeight () {
+      if (this.fixedToolbar) {
+        const toolbar = document.querySelector('.rmh-app > .rmh-app-container > .rmh-toolbar')
+        const content = document.querySelector('.rmh-app > .rmh-app-container > .rmh-content')
+        content.style.height = 'calc(100% - ' + toolbar.clientHeight + 'px)'
+      } else {
+        content.style.height = 'auto'
+      }
     }
   }
 }
