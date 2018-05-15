@@ -38,8 +38,11 @@ export default {
       if (this.fixedToolbar) {
         const toolbar = document.querySelector('.rmh-app > .rmh-app-container > .rmh-toolbar')
         const content = document.querySelector('.rmh-app > .rmh-app-container > .rmh-content')
-        if (toolbar && content)
+        if (toolbar && content) {
           content.style.height = 'calc(100% - ' + toolbar.clientHeight + 'px)'
+        } else {
+          content.style.height = 'auto'
+        }
       } else {
         content.style.height = 'auto'
       }
