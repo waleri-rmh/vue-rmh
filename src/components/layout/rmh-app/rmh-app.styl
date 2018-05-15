@@ -4,8 +4,12 @@
   display: flex
   flex-direction: row
   width: 100vw
-  min-height: 100vh
+  min-width: 100vw
+  max-width: 100vw
   height: 100vh
+  min-height: 100vh
+  max-height: 100vh
+  overflow: hidden
 
   .rmh-drawer.persistent
     position: relative
@@ -18,6 +22,10 @@
   > .rmh-app-container
     flex: 1
     order: 2
+    height: 100vh
+    min-height: 100vh
+    max-height: 100vh
+    overflow: auto
 
     > .rmh-toolbar
       flex: 1 100%
@@ -25,11 +33,15 @@
     > .rmh-content
       flex: 3 0px
       width: 100%
+      max-height: auto
+      min-height: auto
+      height: auto
+      overflow: overlay
 
   &.fixed-toolbar
-    margin-top: 64px
 
     > .rmh-app-container
+      overflow: hidden
 
-      > .rmh-toolbar
-        position: fixed
+      > .rmh-content
+        overflow: auto

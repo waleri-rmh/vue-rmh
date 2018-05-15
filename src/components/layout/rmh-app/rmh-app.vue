@@ -13,10 +13,6 @@ export default {
     }
   },
 
-  data: () => ({
-    menu: null
-  }),
-
   computed: {
     hasDefaultSlot () {
       return !!this.$slots.default
@@ -30,7 +26,11 @@ export default {
   },
 
   mounted () {
-    this.menu = this.$children.filter(child => { return child.$options._componentTag === 'rmh-drawer' })[0]
+    if (this.fixedToolbar) {
+      const toolbar = document.querySelector('.rmh-app > .rmh-app-container > .rmh-toolbar')
+      const content = document.querySelector('.rmh-app > .rmh-app-container > .rmh-content')
+      content.style.height = 'calc(100% - ' + toolbar.clientHeight + 'px)'
+    }
   }
 }
 </script>
