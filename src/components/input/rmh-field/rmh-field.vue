@@ -35,6 +35,7 @@ export default {
 
     isFilled (e) {
       const value = e.target ? e.target.value : e.value
+      console.log(value)
       return value && value !== ''
     },
 
