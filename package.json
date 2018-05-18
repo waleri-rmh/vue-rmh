@@ -2,7 +2,7 @@
   "name": "vue-rmh-components",
   "version": "0.2.1",
   "description": "Vue component collection for RMH",
-  "main": "dist/vue-rmh-components.min.js",
+  "main": "dist/vue-rmh-components.js",
   "scripts": {
     "build": "webpack --config ./webpack.config.js"
   },
@@ -14,6 +14,7 @@
   "author": "RMH",
   "license": "ISC",
   "dependencies": {
+    "autoprefixer": "^8.5.0",
     "babel": "^6.23.0",
     "babel-core": "^6.22.1",
     "babel-eslint": "^8.2.1",
@@ -30,8 +31,11 @@
     "babel-preset-stage-2": "^6.22.0",
     "css-loader": "^0.28.9",
     "es6-promise": "^4.2.4",
+    "extract-text-webpack-plugin": "^3.0.2",
     "moment": "^2.20.1",
     "path": "^0.12.7",
+    "postcss-loader": "^2.1.5",
+    "postcss-smart-import": "^0.7.6",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1",
     "uglify-es-webpack-plugin": "^0.10.0",
@@ -39,7 +43,8 @@
     "vue": "^2.5.13",
     "vue-loader": "^13.7.0",
     "vue-template-compiler": "^2.5.13",
-    "vuex": "^3.0.1"
+    "vuex": "^3.0.1",
+    "webpack-delete-plugin": "^0.1.1"
   },
   "devDependencies": {
     "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony-v2.8.22",

@@ -1,6 +1,8 @@
 const webpack = require('webpack')
 const path = require('path')
-const UglifyPlugin = require('uglify-es-webpack-plugin');
+const UglifyPlugin = require('uglify-es-webpack-plugin')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const WebpackDeletePlugin = require('webpack-delete-plugin')
 
 function resolve (dir) {
   return path.join(__dirname, '..', dir)
@@ -9,11 +11,12 @@ function resolve (dir) {
 module.exports = {
   entry: {
     'vue-rmh-components': './index.js',
+    'main': './main.styl'
   },
   output: {
-    filename: 'dist/vue-rmh-components.min.js',
+    filename: 'dist/[name].js',
     libraryTarget: 'umd',
-    library: 'vue-md-kmh-components',
+    library: 'vue-rmh-components',
     umdNamedDefine: true
   },
   resolve: {
@@ -24,7 +27,6 @@ module.exports = {
   },
   externals: {
     'Vue': 'vue',
-    'vue-material': 'vue-material',
     'moment': 'moment'
   },
   module: {
@@ -35,7 +37,7 @@ module.exports = {
             loader: 'babel-loader',
             options: {
                 presets: [
-                    'es2015',
+                  'es2015'
                 ]
             }
         },
@@ -47,17 +49,37 @@ module.exports = {
         loader: 'css-loader!stylus-loader?paths=node_modules/bootstrap-stylus/stylus/'
       },
       {
+        test: /main.styl$/,
+        loader: ExtractTextPlugin.extract({
+          use: [{
+            loader: 'css-loader',
+            options: { minimize: true }
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              sourceMap: true,
+              plugins: (loader) => [
+                require('postcss-smart-import'),
+                require('autoprefixer'),
+              ]
+            }
+          },
+          { loader: 'stylus-loader?paths=node_modules/bootstrap-stylus/stylus/' }]
+        })
+      },
+      {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
-            loaders: {
-                js: {
-                   loader: 'babel-loader',
-                   options: {
-                       presets: ['es2015']
-                   }
-                },
-            }
+          loaders: {
+            js: {
+              loader: 'babel-loader',
+              options: {
+                presets: ['es2015']
+              }
+            },
+          }
         }
       },
       {
@@ -74,6 +96,11 @@ module.exports = {
     new UglifyPlugin( {
       sourceMap : false,
       mangle: true
-    })
+    }),
+    new ExtractTextPlugin({
+      filename: 'dist/[name].min.css',
+      allChunks: true
+    }),
+    new WebpackDeletePlugin(['./dist/main.js'])
   ]
-};
+}
