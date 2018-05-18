@@ -1,7 +1,7 @@
 <template src="./rmh-radio.html"></template>
 
 <script>
-import component from '../../../mixins/component'
+import component from '@/mixins/component'
 import rmhField from '../rmh-field/rmh-field'
 import rmhIcon from '../rmh-icon/rmh-icon'
 

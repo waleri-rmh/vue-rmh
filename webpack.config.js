@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const WebpackDeletePlugin = require('webpack-delete-plugin')
 
 function resolve (dir) {
-  return path.join(__dirname, '..', dir)
+  return path.join(__dirname, dir)
 }
 
 module.exports = {
@@ -22,7 +22,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.vue', '.json', '.styl'],
     alias: {
-      '@': resolve('src')
+      'vue$': 'vue/dist/vue.esm.js',
+      '@': resolve('src'),
+      'styles': resolve('src/styles')
     }
   },
   externals: {
@@ -33,20 +35,14 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        use: {
-            loader: 'babel-loader',
-            options: {
-                presets: [
-                  'es2015'
-                ]
-            }
-        },
-        include: __dirname,
-        exclude: /node_modules/
+        loader: 'babel-loader',
+        exclude: [
+            /node_modules\/(?!ing-).*/
+        ]
       },
       {
         test: /\.styl$/,
-        loader: 'css-loader!stylus-loader?paths=node_modules/bootstrap-stylus/stylus/'
+        loader: 'style-loader!css-loader!stylus-loader'
       },
       {
         test: /main.styl$/,
@@ -65,26 +61,12 @@ module.exports = {
               ]
             }
           },
-          { loader: 'stylus-loader?paths=node_modules/bootstrap-stylus/stylus/' }]
+          { loader: 'stylus-loader' }]
         })
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            js: {
-              loader: 'babel-loader',
-              options: {
-                presets: ['es2015']
-              }
-            },
-          }
-        }
-      },
-      {
-        test: /\.css$/,
-        loader: 'style!less!css'
+        loader: 'vue-loader'
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

@@ -1,7 +1,7 @@
 <template src="./rmh-toolbar.html"></template>
 
 <script>
-import component from '../../../mixins/component'
+import component from '@/mixins/component'
 
 export default {
   name: 'rmh-toolbar',
