@@ -35,11 +35,13 @@ export default {
   },
 
   data: () => ({
-    transitionEnd: true
+    transitionEnd: true,
+    isOpen: this.open
   }),
 
   watch: {
     open (value) {
+      this.isOpen = value
       if (value) {
         this.transitionEnd = true
       }
@@ -49,8 +51,8 @@ export default {
   updated () {
     if (!this.transitionEnd) {
       setTimeout(() => {
-        this.open = false
-        this.$emit('update:open', this.open)
+        this.isOpen = false
+        this.$emit('update:open', this.isOpen)
         this.transitionEnd = true
       }, 400)
     }

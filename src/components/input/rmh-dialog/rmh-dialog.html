@@ -1,4 +1,4 @@
-<div v-if="open || !transitionEnd" class="rmh-dialog" :class="{ 'with-divider': withDivider, closing: !transitionEnd }" v-bind="$attrs" v-on="$listeners">
+<div v-if="isOpen || !transitionEnd" class="rmh-dialog" :class="{ 'with-divider': withDivider, closing: !transitionEnd }" v-bind="$attrs" v-on="$listeners">
   <div v-if="wall" class="rmh-dialog-wall" @click.stop="wallCloseTrigger" />
   <div class="rmh-dialog-container">
     <rmh-button class="icon-button rmh-dialog-close" @click.stop="close">
