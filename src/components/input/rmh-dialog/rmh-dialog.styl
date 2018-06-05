@@ -1,4 +1,59 @@
 @import '~styles/variables'
+@import '~styles/animations'
 
 .rmh-dialog
-  // ...
+  z-index: 10001
+  position: fixed
+  display: flex
+  align-items: center
+  justify-content: center
+  bottom: 0
+  right: 0
+  left: 0
+  top: 0
+  
+  .rmh-dialog-wall
+    z-index: 10002
+    position: absolute
+    width: 100%
+    height: 100%
+    background: alpha(rmh-color-default, .4)
+    transition: .3s ease
+    animation: fadeIn .4s forwards
+
+  .rmh-dialog-container
+    z-index: 10003
+    position: relative
+    min-width: 400px
+    min-height: 100px
+    background: rmh-color-white
+    border-radius: 7px
+    animation: fadeIn .6s forwards, fromTop .6s forwards
+
+    .rmh-dialog-close
+      z-index: 10004
+      position: absolute
+      width: 30px
+      height: 30px
+      right: 10px
+      top: 10px
+
+      .rmh-icon
+        font-size: 20px
+        color: rmh-color-red
+
+  &.closing
+
+    .rmh-dialog-wall
+      animation: fadeOut .4s forwards
+
+    .rmh-dialog-container
+      animation: fadeOut .6s forwards, toTop .6s forwards
+
+  &.with-divider
+
+    .rmh-dialog-header
+      border-bottom: 1px solid rmh-color-grey-lighter
+
+    .rmh-dialog-action
+      border-top: 1px solid rmh-color-grey-lighter
