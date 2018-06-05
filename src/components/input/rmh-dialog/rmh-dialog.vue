@@ -4,6 +4,9 @@
 import component from '@/mixins/component'
 import rmhButton from '@/components/input/rmh-button/rmh-button'
 import rmhIcon from '@/components/input/rmh-icon/rmh-icon'
+import rmhDialogHeader from './rmh-dialog-header/rmh-dialog-header'
+import rmhDialogContent from './rmh-dialog-content/rmh-dialog-content'
+import rmhDialogAction from './rmh-dialog-action/rmh-dialog-action'
 
 export default {
   name: 'rmh-dialog',
@@ -11,8 +14,11 @@ export default {
   mixins: [component],
 
   components: {
+    rmhIcon,
     rmhButton,
-    rmhIcon
+    rmhDialogHeader,
+    rmhDialogContent,
+    rmhDialogAction
   },
 
   props: {
@@ -31,6 +37,30 @@ export default {
     withDivider: {
       type: Boolean,
       default: false
+    },
+    title: {
+      type: String
+    },
+    content: {
+      type: String
+    },
+    actions: {
+      type: Array,
+      default: null
+    },
+    alert: {
+      type: Boolean,
+      default: false
+    },
+    confirm: {
+      type: Boolean,
+      default: false
+    },
+    cancelText: {
+      type: String
+    },
+    confirmText: {
+      type: String
     }
   },
 
@@ -68,6 +98,11 @@ export default {
       if (this.wallClose) {
         this.close()
       }
+    },
+
+    triggerConfirm (value) {
+      this.close()
+      this.$emit('confirm', value)
     }
   }
 }
