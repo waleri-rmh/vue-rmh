@@ -1,6 +1,19 @@
 @import '~styles/variables'
 
 .rmh-card-action
-  display: block
-  padding: 20px
-  
+  display: flex
+  flex-wrap: wrap
+  flex-direction: row
+  padding: 10px 20px
+
+  &.align-right
+    justify-content: flex-end
+
+  &.align-center
+    justify-content: center
+
+  &.reversed
+    flex-direction: row-reverse
+
+  > *
+    flex: 0 auto !important
