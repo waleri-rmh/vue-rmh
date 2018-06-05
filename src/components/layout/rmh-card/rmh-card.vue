@@ -6,6 +6,13 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-card',
 
+  props: {
+    withDivider: {
+      type: Boolean,
+      default: false
+    }
+  },
+
   computed: {
     hasDefaultSlot () {
       return !!this.$slots.default
