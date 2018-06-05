@@ -6,6 +6,8 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-icon',
 
+  mixins: [component],
+
   computed: {
     listeners () {
       let l = { ...this.$listeners }

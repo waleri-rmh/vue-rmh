@@ -6,6 +6,8 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-drawer',
 
+  mixins: [component],
+
   props: {
     right: {
       type: Boolean,

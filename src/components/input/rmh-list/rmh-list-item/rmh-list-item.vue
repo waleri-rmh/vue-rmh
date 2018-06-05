@@ -6,6 +6,8 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-list-item',
 
+  mixins: [component],
+
   props: {
     link: {
       type: Boolean,

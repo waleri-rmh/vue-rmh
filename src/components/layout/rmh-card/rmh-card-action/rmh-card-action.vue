@@ -6,6 +6,8 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-card-action',
 
+  mixins: [component],
+
   props: {
     alignRight: {
       type: Boolean,

@@ -6,6 +6,8 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-card-header',
 
+  mixins: [component],
+
   computed: {
     hasDefaultSlot () {
       return !!this.$slots.default

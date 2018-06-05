@@ -6,6 +6,8 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-content',
 
+  mixins: [component],
+
   computed: {
     hasDefaultSlot () {
       return !!this.$slots.default

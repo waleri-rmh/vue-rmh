@@ -6,6 +6,8 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-app',
 
+  mixins: [component],
+
   props: {
     fixedToolbar: {
       type: Boolean,

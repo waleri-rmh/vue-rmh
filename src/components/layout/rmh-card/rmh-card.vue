@@ -6,6 +6,8 @@ import component from '@/mixins/component'
 export default {
   name: 'rmh-card',
 
+  mixins: [component],
+
   props: {
     withDivider: {
       type: Boolean,
