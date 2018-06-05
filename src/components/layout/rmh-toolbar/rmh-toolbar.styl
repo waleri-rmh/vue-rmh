@@ -27,8 +27,9 @@
     background: rmh-color-primary
     color: rmh-color-white
 
-    .rmh-button
-      color: rmh-color-white
+    :not(.rmh-dialog) .rmh-button,
+    > .rmh-button
+        color: rmh-color-white
 
   &.transparent
     background: transparent
@@ -40,7 +41,8 @@
     padding: 0
     margin-left: 24px
 
-  .rmh-button
+  :not(.rmh-dialog) .rmh-button,
+  > .rmh-button
     margin: 0
     display: inline-flex
 
