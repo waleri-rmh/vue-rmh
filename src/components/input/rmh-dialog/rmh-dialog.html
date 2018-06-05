@@ -7,7 +7,7 @@
   <div class="rmh-dialog-container">
   
     <!-- CLOSE BUTTON -->
-    <rmh-button class="icon-button rmh-dialog-close" @click.stop="close">
+    <rmh-button v-if="!alert && !confirm" class="icon-button rmh-dialog-close" @click.stop="close">
       <rmh-icon>close</rmh-icon>
     </rmh-button>
 
