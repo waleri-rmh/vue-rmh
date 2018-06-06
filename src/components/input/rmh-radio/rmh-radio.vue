@@ -89,7 +89,9 @@ export default {
     },
 
     toggle (e) {
-      this.$emit('change', this.value)
+      if (!this.disabled) {
+        this.$emit('change', this.value)
+      }
     }
   }
 }

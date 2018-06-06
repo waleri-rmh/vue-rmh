@@ -67,7 +67,7 @@ rmh-checkbox-touch-size = 48px
     position: relative
     line-height: rmh-checkbox-size
 
-  &.checked
+  &.checked:not(.disabled)
     .checkbox-container
       background-color: rmh-color-primary
       border-color: rmh-color-primary
@@ -75,9 +75,12 @@ rmh-checkbox-touch-size = 48px
 
   &.disabled
 
+    &.checked
+      .checkbox-container
+        color: rmh-color-grey
+    
     .checkbox-container
       border-color: rmh-color-grey
-      color: rmh-color-grey
       cursor: default
 
     label
