@@ -12,10 +12,20 @@ This project is still in its infancy. Documentation and updates will follow.
 ## Usage
 
 ### Installation
-```bash
-$ npm install vue-rmh
-```
+Install vue-rmh through npm or yarn
 
 ```bash
+$ npm install vue-rmh
 $ yarn add vue-rmh
+```
+
+### Usage
+Import or require vue and vue-rmh in your code:
+
+```bash
+import Vue from 'vue'
+import vueRmh from 'vue-rmh'
+import 'vue-rmh/dist/main.min.css'
+
+Vue.use(vueRmh)
 ```
