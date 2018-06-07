@@ -1,23 +1,21 @@
 # Vue RMH Components
 
-> Vue Component Collection
+> Vue UI Framework
+
+This project is still in its infancy. Documentation and updates will follow.
 
 ## Development
 
 ### Prerequisites
 - Vue
 
-  ```bash
-  $ yarn add vue
-  ```
-
 ## Usage
 
 ### Installation
 ```bash
-$ npm install vue-rmh-components
+$ npm install vue-rmh
 ```
 
 ```bash
-$ yarn add vue-rmh-components
+$ yarn add vue-rmh
 ```

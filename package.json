@@ -1,7 +1,7 @@
 {
-  "name": "vue-rmh-components",
-  "version": "0.2.1",
-  "description": "Vue component collection for RMH",
+  "name": "vue-rmh",
+  "version": "0.2.2",
+  "description": "vue ui framework",
   "main": "dist/vue-rmh-components.js",
   "scripts": {
     "build": "webpack --config ./webpack.config.js"
@@ -11,8 +11,7 @@
     "material",
     "kmh"
   ],
-  "author": "RMH",
-  "license": "ISC",
+  "author": "Waleri Tumanez <w.tumanez@rmh.de>",
   "dependencies": {
     "autoprefixer": "^8.5.0",
     "babel": "^6.23.0",
