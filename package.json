@@ -1,6 +1,6 @@
 {
   "name": "vue-rmh",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "vue ui framework",
   "main": "dist/vue-rmh-components.js",
   "scripts": {
