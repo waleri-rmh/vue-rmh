@@ -1,8 +1,3 @@
-<div class="rmh-tab" :class="classes" v-bind="$attrs" v-on="$listeners" @click="activate">
-  <div class="rmh-tab-label">
-    {{ label }}
-  </div>
-  <div class="rmh-tab-content">
-    <slot></slot>
-  </div>
+<div v-if="visible">
+  <slot></slot>
 </div>

@@ -2,11 +2,16 @@
 
 <script>
 import component from '@/mixins/component'
+import rmhTabHeader from './rmh-tab-header/rmh-tab-header'
 
 export default {
   name: 'rmh-tabs',
 
   mixins: [component],
+
+  components: {
+    rmhTabHeader
+  },
 
   data: () => ({
     tabs: [],
@@ -26,7 +31,6 @@ export default {
 
   mounted () {
     this.fetchTabs()
-    this.setTabEvents()
   },
 
   watch: {
@@ -36,22 +40,13 @@ export default {
   },
 
   methods: {
-    tabActivated (tab) {
-      this.selectedTab = tab
-      this.setSelectedTabIndex(tab)
-    },
-
-    tabDeactivated () {
-      this.fetchTabs()
-      this.setTabEvents()
-    },
-
-    setSelectedTabIndex (tab) {
-      for (let _tab in this.tabs) {
-        if (this.tabs[_tab] === tab) {
-          this.selectedTabIndex = parseInt(_tab)
-        } else {
-          this.tabs[_tab].deactivate()
+    setSelectedTabIndex (index) {
+      this.selectedTabIndex = parseInt(index)
+      this.selectedTab = this.tabs[index]
+      for (let tab of this.tabs) {
+        tab.hide()
+        if (tab === this.selectedTab) {
+          tab.show()
         }
       }
     },
@@ -60,25 +55,17 @@ export default {
       this.tabs = this.$children.filter(child => {
         return child.$options._componentTag === 'rmh-tab'
       })
+      this.checkPropActivated()
     },
 
     checkPropActivated () {
-      let activeTabExists = false
       for (let tab in this.tabs) {
-        if (tab.isActive) {
-          activeTabExists = true
+        if (this.tabs[tab].active) {
+          this.setSelectedTabIndex(tab)
+          return
         }
       }
-      if (!activeTabExists && this.tabs.length > 0) {
-        this.tabs[0].activate()
-      }
-    },
-
-    setTabEvents () {
-      for (let tab of this.tabs) {
-        tab.$on('tabActivated', this.tabActivated)
-      }
-      this.checkPropActivated()
+      this.setSelectedTabIndex(0)
     },
 
     changedSelectedTab () {
@@ -87,20 +74,6 @@ export default {
         target: this.selectedTab.$el,
         index: this.selectedTabIndex
       })
-      this.moveTabContent()
-    },
-
-    moveTabContent () {
-      for (let tab of this.tabs) {
-        tab.$el.querySelector('.rmh-tab-content').style.display = 'block'
-      }
-      const tabContent = this.selectedTab.$el.querySelector('.rmh-tab-content')
-      if (this.$refs.body && tabContent) {
-        this.$refs.body.innerHTML = tabContent.innerHTML
-      }
-      for (let tab of this.tabs) {
-        tab.$el.querySelector('.rmh-tab-content').style.display = 'none'
-      }
     }
   }
 }

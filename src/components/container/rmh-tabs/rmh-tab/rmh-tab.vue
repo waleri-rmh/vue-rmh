@@ -20,48 +20,17 @@ export default {
   },
 
   data: () => ({
-    isActive: false
+    visible: false
   }),
 
-  computed: {
-    hasDefaultSlot () {
-      return !!this.$slots.default
-    },
-
-    classes () {
-      return {
-        'active': this.isActive
-      }
-    }
-  },
-
-  mounted () {
-    if (this.active) {
-      this.activate()
-    }
-  },
-
-  watch: {
-    active (value) {
-      if (value) {
-        this.activate()
-      } else {
-        this.deactivate()
-      }
-    }
-  },
-
   methods: {
-    activate () {
-      this.isActive = true
-      this.$emit('tabActivated', this)
+    show () {
+      this.visible = true
     },
 
-    deactivate () {
-      this.isActive = false
+    hide () {
+      this.visible = false
     }
   }
 }
 </script>
-
-<style src="./rmh-tab.styl" lang="stylus"></style>
