@@ -20,7 +20,7 @@
     
     <!-- PROP GENERATED ACTIONS -->
     <rmh-dialog-action v-if="actions" align-right>
-      <rmh-button v-for="(action, index) in actions" :key="'rmh-dialog-action-' + index" :class="action.class" @click.prevent="action.click()">{{ action.text }}</rmh-button>
+      <rmh-button v-for="(action, index) in actions" :key="'rmh-dialog-action-' + index" :class="action.class" @click.prevent="action.trigger">{{ action.label }}</rmh-button>
     </rmh-dialog-action>
     
     <!-- CONFIRM ACTIONS -->
