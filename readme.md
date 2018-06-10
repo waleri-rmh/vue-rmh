@@ -4,7 +4,7 @@
 
 This project is still in its infancy.
 
-### <a href="http://material.google.com" target="_blank">Documentation</a>
+### <a href="https://waleri-rmh.github.io/vue-rmh/#/" target="_new">Documentation</a>
 
 ## Development
 
