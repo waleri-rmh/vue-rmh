@@ -2,7 +2,9 @@
 
 > Vue UI Framework
 
-This project is still in its infancy. Documentation and updates will follow.
+This project is still in its infancy.
+
+### <a href="http://material.google.com" target="_blank">Documentation</a>
 
 ## Development
 
