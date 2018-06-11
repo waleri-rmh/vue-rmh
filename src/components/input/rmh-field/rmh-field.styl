@@ -70,9 +70,14 @@
       flex: 0
       align-self: flex-start
       margin: 0
-      height: 30px
-      line-height: 30px
-      border-radius: 0 5px 0 0
+      height: auto
+      line-height: normal
+      height: 100%
+      border: 0px none
+      border-radius: 0
+
+      &:last-of-type
+        border-radius: 0 5px 0 0
 
       &:not(.primary)
         border-left: 1px solid alpha(rmh-color-grey, .5)
@@ -88,7 +93,7 @@
       &.disabled
         border-color: rmh-color-grey
 
-      .rmh-button:not(.primary)
+      .rmh-button:last-of-type
         border-radius: 0 5px 5px 0
 
   &.disabled
