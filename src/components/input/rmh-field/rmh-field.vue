@@ -35,7 +35,7 @@ export default {
 
     isFilled (e) {
       const value = e.target ? e.target.value : e.value
-      return typeof value === 'string' && value && value !== ''
+      return value && value !== ''
     },
 
     inputMounted (val) {
