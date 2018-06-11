@@ -1,0 +1,10 @@
+<rmh-field ref="field" :class="classes">
+  <label v-if="label && label !== ''">{{ label }}</label>
+  <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
+  
+  <input v-model="model.value" ref="input" class="rmh-file" v-on="$listeners" readonly v-bind="{ disabled }" @focus="focus" @blur="blur" @click="openPicker">
+
+  <input type="file" ref="inputFile" v-bind="{ disabled, multiple, accept }" @change="onChange" />
+
+  <slot name="button"></slot>
+</rmh-field>
