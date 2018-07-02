@@ -1,7 +1,9 @@
 @import '~styles/variables'
 
+menu-width = 230px
+menu-width-mini = 80px
+
 .rmh-drawer
-  position: absolute
   width: 0
   height: 0
 
@@ -64,7 +66,8 @@
       left: auto
       right: 0
 
-  &.open
+  &.open,
+  &.mini
 
     .wall
       opacity: 1
@@ -72,18 +75,39 @@
 
     .rmh-drawer-content
       opacity: 1
-      width: 230px
+      width: menu-width
       border-right: 1px solid rmh-color-grey-lighter
 
+    &:not(.open)
+      .rmh-drawer-content
+        width: menu-width-mini
+
     &.persistent
-      width: 230px
+      width: menu-width
+    
+      &:not(.open)
+        width: menu-width-mini
 
     &.right
       .rmh-drawer-content
         opacity: 1
-        width: 230px
         border: none
         border-left: 1px solid rmh-color-grey-lighter
+
+    &.mini:not(.open)
+
+      .rmh-drawer-content > *:not(.rmh-list)
+        display: none
+
+      .rmh-list-item
+        justify-content: center
+
+        *
+          padding: 0
+          margin: 0
+          
+          &:not(.rmh-icon)
+            display: none
 
   &.right
     justify-content: flex-end

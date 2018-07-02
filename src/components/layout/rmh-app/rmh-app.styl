@@ -1,48 +1,76 @@
 @import '~styles/variables'
 
 .rmh-app
-  display: flex
-  flex-direction: row
+  display: grid
+  grid-template-columns: min-content auto
+  grid-template-rows: min-content auto min-content
   width: 100vw
   min-width: 100vw
   max-width: 100vw
-  height: 100vh
   min-height: 100vh
-  max-height: 100vh
-  overflow: hidden
 
-  .rmh-drawer.persistent
-    position: relative
-    order: 1
-    flex: 0
+  &.clipped
 
-    &.right
-      order: 3
+    .rmh-toolbar
+      grid-column: 1 / span 2
+      grid-row: 1
 
-  > .rmh-app-container
-    flex: 1
-    order: 2
+    .rmh-drawer
+      grid-column: 1
+      grid-row: 2
+
+    .rmh-content
+      grid-column: 2
+      grid-row: 2
+
+    .rmh-footer
+      grid-column: 1 / span 2
+      grid-row: 3
+
+  &:not(.clipped)
+
+    .rmh-toolbar
+      grid-column: 2
+      grid-row: 1
+
+    .rmh-drawer
+      grid-column: 1
+      grid-row: 1 / span 2
+
+    .rmh-content
+      grid-column: 2
+      grid-row: 2
+
+    .rmh-footer
+      grid-column: 2
+      grid-row: 3
+
+  &.right
+    grid-template-columns: auto min-content
+    
+    &.clipped
+
+      .rmh-drawer
+        grid-column: 2
+
+      .rmh-content
+        grid-column: 1
+
+    &:not(.clipped)
+
+      .rmh-toolbar
+        grid-column: 1
+
+      .rmh-drawer
+        grid-column: 2
+
+      .rmh-content
+        grid-column: 1
+
+      .rmh-footer
+        grid-column: 1
+
+  &.fixed
     height: 100vh
-    min-height: 100vh
     max-height: 100vh
-    overflow: auto
-    background: rmh-color-white-darker
-
-    > .rmh-toolbar
-      flex: 0
-
-    > .rmh-content
-      flex: 3 0px
-      width: 100%
-      max-height: auto
-      min-height: auto
-      height: auto
-      overflow: overlay
-
-  &.fixed-toolbar
-
-    > .rmh-app-container
-      overflow: hidden
-
-      > .rmh-content
-        overflow: auto
+    overflow: hidden

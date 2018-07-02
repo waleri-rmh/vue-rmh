@@ -1,10 +1,10 @@
-<template src="./rmh-toolbar.html"></template>
+<template src="./rmh-footer.html"></template>
 
 <script>
 import component from '@/mixins/component'
 
 export default {
-  name: 'rmh-toolbar',
+  name: 'rmh-footer',
 
   mixins: [component],
 
@@ -16,4 +16,4 @@ export default {
 }
 </script>
 
-<style src="./rmh-toolbar.styl" lang="stylus"></style>
+<style src="./rmh-footer.styl" lang="stylus"></style>

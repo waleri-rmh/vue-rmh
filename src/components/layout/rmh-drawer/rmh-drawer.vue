@@ -9,15 +9,15 @@ export default {
   mixins: [component],
 
   props: {
-    right: {
-      type: Boolean,
-      default: false
-    },
     open: {
       type: Boolean,
       default: false
     },
     persistent: {
+      type: Boolean,
+      default: false
+    },
+    mini: {
       type: Boolean,
       default: false
     },
@@ -29,9 +29,30 @@ export default {
     }
   },
 
+  data: () => ({
+    right: false
+  }),
+
+  mounted () {
+    this.right = (this.$parent && this.$parent.right) || false
+  },
+
+  updated () {
+    this.right = (this.$parent && this.$parent.right) || false
+  },
+
   computed: {
     hasDefaultSlot () {
       return !!this.$slots.default
+    },
+
+    classes () {
+      return {
+        right: this.right,
+        open: this.open,
+        persistent: this.persistent,
+        mini: this.mini
+      }
     }
   }
 }
