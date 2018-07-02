@@ -47,21 +47,26 @@ export default {
     accept: {
       type: String,
       default: ''
+    },
+    drop: {
+      type: Boolean,
+      default: false
     }
   },
 
   data: () => ({
-    localValue: {},
+    dropEntered: false,
     files: [],
     model: {}
   }),
 
   mounted () {
-    this.model = {
+    this.model = Object.assign({
       value: '',
       files: []
-    }
-    this.$refs.field.inputMounted(this.model.value)
+    }, this.value)
+    this.fakeMount()
+    this.initDrop()
   },
 
   computed: {
@@ -76,21 +81,25 @@ export default {
         'with-icon': this.icon !== '',
         'bordered': this.bordered,
         'disabled': this.disabled,
-        'required': this.required
+        'required': this.required,
+        'rmh-file-drop': this.drop,
+        'rmh-file-drop-entered': this.dropEntered
       }
     }
   },
 
   watch: {
-    localValue: {
-      handler (value) {
-        this.$emit('input', value)
-      },
-      deep: true
-    },
     model: {
       handler (value) {
         this.localValue = value
+      },
+      deep: true
+    },
+    value: {
+      handler (value) {
+        console.log('value changed')
+        this.model = value
+        this.fakeMount()
       },
       deep: true
     }
@@ -107,6 +116,10 @@ export default {
       this.$refs.field.blur({
         value: this.model.value
       })
+    },
+
+    fakeMount () {
+      this.$refs.field.inputMounted(this.model.value)
     },
 
     getMultipleName (files) {
@@ -133,18 +146,51 @@ export default {
       this.$refs.input.focus()
     },
 
-    onChange ($event) {
-      this.onFileSelected($event)
+    onChange (e) {
+      this.handleFiles(e)
     },
 
-    onFileSelected ({ target, dataTransfer }) {
+    handleFiles ({ target, dataTransfer }) {
       const files = target.files || dataTransfer.files
       this.files = files || target.value
+      for (let file of this.files) {
+        console.log('accept', file.input.match(new RegExp(this.accept)))
+      }
       this.model = {
         value: this.getFileName(files, target),
         files: this.files
       }
+      this.fakeMount()
+      this.$emit('input', this.model)
       this.$emit('change', this.files)
+    },
+
+    initDrop () {
+      if (this.drop) {
+        this.$refs.field.$el.addEventListener('dragenter', this.dropEnter, false)
+        this.$refs.field.$el.addEventListener('dragover', this.dropEnter, false)
+        this.$refs.field.$el.addEventListener('dragleave', this.dropLeave, false)
+        this.$refs.field.$el.addEventListener('drop', this.dropHandle, false)
+      }
+    },
+
+    dropEnter (e) {
+      e.preventDefault()
+      e.stopPropagation()
+      this.dropEntered = true
+    },
+
+    dropLeave (e) {
+      e.preventDefault()
+      e.stopPropagation()
+      this.dropEntered = false
+    },
+
+    dropHandle (e) {
+      e.preventDefault()
+      e.stopPropagation()
+      this.dropLeave(e)
+      this.handleFiles(e)
     }
   }
 }

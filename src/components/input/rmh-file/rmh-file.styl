@@ -1,5 +1,24 @@
 @import '~styles/variables'
 
+.has-rmh-file
+
+  &.rmh-file-drop
+    
+    &:before
+      position: absolute
+      content: ''
+      width: 100%
+      height: 100%
+      border: 2px dashed rmh-color-grey-lighter
+      padding: 10px
+      margin-left: -10px
+      transition: .2s ease
+
+    &.rmh-file-drop-entered
+
+      &:before
+        border: 2px dashed rmh-color-green
+
 .rmh-file
   flex: 1
   margin: 0
