@@ -1,8 +1,10 @@
 const webpack = require('webpack')
+const fs = require('fs')
 const path = require('path')
 const UglifyPlugin = require('uglify-es-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const WebpackDeletePlugin = require('webpack-delete-plugin')
+const node_modules = fs.readdirSync('node_modules').filter(function(x) { return x !== '.bin' })
 
 function resolve (dir) {
   return path.join(__dirname, dir)
@@ -27,9 +29,12 @@ module.exports = {
       'styles': resolve('src/styles')
     }
   },
-  externals: {
-    'Vue': 'vue',
-    'moment': 'moment'
+  externals: function(context, request, cb) {
+    if(node_modules.indexOf(request) !== -1) {
+      cb(null, 'commonjs ' + request);
+      return;
+    }
+    cb();
   },
   module: {
     loaders: [
