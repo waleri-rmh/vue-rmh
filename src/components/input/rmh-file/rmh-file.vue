@@ -97,7 +97,6 @@ export default {
     },
     value: {
       handler (value) {
-        console.log('value changed')
         this.model = value
         this.fakeMount()
       },
