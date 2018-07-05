@@ -1,0 +1,56 @@
+@import '~styles/variables'
+
+.rmh-table-container
+  display: block
+  width: 100%
+  max-width: 100%
+  border-radius: 5px
+  overflow: scroll
+
+  .rmh-table
+    border-collapse: collapse
+    border-spacing: 0
+    width: 100%
+    max-width: 100%
+    color: inherit
+    font: inherit
+    font-size: inherit
+    font-weight: inherit
+    
+    .rmh-row
+      width: 100%
+      max-width: 100%
+      background: rmh-color-white-darker
+      transition: .3s ease
+
+      &:not(:last-of-type)
+        border-width: 1px
+        border-bottom-width: 1px
+        border-bottom-style: solid
+        border-color: #fff
+
+      &.head
+        font-weight: 700
+        background: rmh-color-grey-lighter
+
+      .rmh-cell
+        padding: 10px 20px
+        transition: .3s ease
+
+        &:not(:last-of-type)
+          border-right-width: 1px
+          border-right-style: solid
+          border-color: #fff
+
+        &.right
+          text-align: right
+
+        &.center
+          text-align: center
+
+  &.primary
+
+    .rmh-row.head
+      background: rmh-color-primary
+      color: rmh-color-white
+          
