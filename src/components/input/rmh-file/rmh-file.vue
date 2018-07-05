@@ -153,9 +153,6 @@ export default {
     handleFiles ({ target, dataTransfer }) {
       const files = target.files || dataTransfer.files
       this.files = files || target.value
-      for (let file of this.files) {
-        console.log('accept', file.input.match(new RegExp(this.accept)))
-      }
       this.model = {
         value: this.getFileName(files, target),
         files: this.files
