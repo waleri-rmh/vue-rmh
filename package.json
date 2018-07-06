@@ -1,15 +1,18 @@
 {
   "name": "vue-rmh",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "description": "vue ui framework",
   "main": "dist/vue-rmh-components.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "webpack --config ./webpack.config.js"
   },
   "keywords": [
     "vue",
     "material",
-    "kmh"
+    "rmh"
   ],
   "author": "Waleri Tumanez <w.tumanez@rmh.de>",
   "dependencies": {

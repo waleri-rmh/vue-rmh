@@ -29,13 +29,6 @@ module.exports = {
       'styles': resolve('src/styles')
     }
   },
-  externals: function(context, request, cb) {
-    if(node_modules.indexOf(request) !== -1) {
-      cb(null, 'commonjs ' + request);
-      return;
-    }
-    cb();
-  },
   module: {
     loaders: [
       {
