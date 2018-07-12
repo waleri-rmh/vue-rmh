@@ -24,12 +24,29 @@
 
   .rmh-dialog-container
     z-index: 10003
+    display: grid
+    grid-template-columns: 1fr
+    grid-template-rows: auto 1fr auto
     position: relative
     min-width: 400px
     min-height: 100px
     background: rmh-color-white
     border-radius: 7px
     animation: fadeIn .6s forwards, fromTop .6s forwards
+    overflow: hidden
+    max-height: 90%
+
+    .rmh-dialog-header
+      grid-row: 1
+      grid-column: 1
+
+    .rmh-dialog-content
+      grid-row: 2
+      grid-column: 1
+
+    .rmh-dialog-action
+      grid-row: 3
+      grid-column: 1
 
     .rmh-dialog-close
       z-index: 10004
