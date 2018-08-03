@@ -24,6 +24,10 @@ export default {
       type: String,
       default: ''
     },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     icon: {
       type: String,
       default: 'attach_file'
@@ -37,7 +41,11 @@ export default {
       default: false
     },
     required: {
-      type: Boolean,
+      type: [Boolean, String],
+      default: false
+    },
+    validation: {
+      type: [Boolean, String],
       default: false
     },
     multiple: {
@@ -57,7 +65,8 @@ export default {
   data: () => ({
     dropEntered: false,
     files: [],
-    model: {}
+    model: {},
+    errorBlink: false
   }),
 
   mounted () {
@@ -65,7 +74,7 @@ export default {
       value: '',
       files: []
     }, this.value)
-    this.fakeMount()
+    this.$refs.field.inputMounted(this.model.value)
     this.initDrop()
   },
 
@@ -82,6 +91,7 @@ export default {
         'bordered': this.bordered,
         'disabled': this.disabled,
         'required': this.required,
+        'error-blink': this.errorBlink,
         'rmh-file-drop': this.drop,
         'rmh-file-drop-entered': this.dropEntered
       }
@@ -91,14 +101,17 @@ export default {
   watch: {
     model: {
       handler (value) {
-        this.localValue = value
+        if (value !== this.localValue) {
+          this.localValue = value
+        }
       },
       deep: true
     },
     value: {
       handler (value) {
-        this.model = value
-        this.fakeMount()
+        if (value !== this.model) {
+          this.model = value
+        }
       },
       deep: true
     }
@@ -115,10 +128,6 @@ export default {
       this.$refs.field.blur({
         value: this.model.value
       })
-    },
-
-    fakeMount () {
-      this.$refs.field.inputMounted(this.model.value)
     },
 
     getMultipleName (files) {
@@ -152,13 +161,36 @@ export default {
     handleFiles ({ target, dataTransfer }) {
       const files = target.files || dataTransfer.files
       this.files = files || target.value
-      this.model = {
-        value: this.getFileName(files, target),
-        files: this.files
+      if (this.acceptHandling()) {
+        this.model = {
+          value: this.getFileName(files, target),
+          files: this.files
+        }
+      } else {
+        this.errorBlink = true
+        setTimeout(() => {
+          this.errorBlink = false
+        }, 200)
+        this.model = {
+          value: '',
+          files: []
+        }
       }
-      this.fakeMount()
+      this.$refs.field.inputUpdated(this.model.value)
       this.$emit('input', this.model)
       this.$emit('change', this.files)
+    },
+
+    acceptHandling () {
+      for (let file of this.files) {
+        const ext = '.' + file.name.split('.').pop()
+        const meme = file.type
+        const memeAllrounder = meme.split('/').shift() + '/*'
+        const isValideExt = ext && ext !== '' && this.accept.indexOf(ext) > -1
+        const isValideMeme = meme && meme !== '' && this.accept.indexOf(meme) > -1 || this.accept.indexOf(memeAllrounder) > -1
+        if (!(isValideExt || isValideMeme)) return false
+      }
+      return this.files.length > 0 ? true : false
     },
 
     initDrop () {
