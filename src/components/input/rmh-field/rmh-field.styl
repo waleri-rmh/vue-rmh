@@ -37,7 +37,7 @@
       input, label
         padding-left: 25px
 
-    label
+    label, .placeholder
       align-self: flex-start
       position: absolute
       pointer-events: none
@@ -45,6 +45,9 @@
       line-height: normal
       align-self: center
       z-index: 1
+
+    .placeholder
+      color: rmh-color-grey-darker
 
     &.focused
       border-bottom-color: rmh-color-primary
@@ -109,3 +112,18 @@
       content: '*'
       line-height: 1em
       vertical-align: top
+
+  &.invalid:not(.no-field)
+    border-bottom: 1px solid rmh-color-red
+    
+    &.bordered
+      border-color: rmh-color-red
+
+    .error
+      position: absolute
+      top: 25px
+      font-size: 12px
+      color: rmh-color-red
+
+    label
+      color: rmh-color-red

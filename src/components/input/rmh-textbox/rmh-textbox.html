@@ -1,5 +1,6 @@
-<rmh-field ref="field" :class="classes">
+<rmh-field ref="field" :validation="validation" :placeholder="placeholder" :required="required" :class="classes">
   <label v-if="label && label !== ''">{{ label }}</label>
+  <span class="placeholder" v-if="placeholder && placeholder !== '' && localValue === ''">{{ placeholder }}</span>
   <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
   <input class="rmh-textbox" v-on="listeners" v-bind="{ disabled }" v-model="localValue" @focus="focus" @blur="blur" />
   <slot name="button"></slot>

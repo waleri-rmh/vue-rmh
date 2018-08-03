@@ -64,10 +64,14 @@ export default {
 
   watch: {
     localValue (val) {
-      this.$emit('input', val)
+      if (val !== this.value) {
+        this.$emit('input', val)
+      }
     },
     value (val) {
-      this.localValue = val
+      if (val !== this.localValue) {
+        this.localValue = val
+      }
     }
   },
 

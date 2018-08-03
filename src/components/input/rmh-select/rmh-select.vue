@@ -24,6 +24,10 @@ export default {
       type: String,
       default: ''
     },
+    placeholder: {
+      type: String,
+      default: ''
+    },
     icon: {
       type: String,
       default: ''
@@ -37,7 +41,11 @@ export default {
       default: false
     },
     required: {
-      type: Boolean,
+      type: [Boolean, String],
+      default: false
+    },
+    validation: {
+      type: [Boolean, String],
       default: false
     }
   },
@@ -76,10 +84,16 @@ export default {
 
   watch: {
     localValue (val) {
-      this.$emit('input', val)
+      if (val !== this.value) {
+        this.$emit('input', val)
+        this.$refs.field.inputUpdated(val)
+      }
     },
     value (val) {
-      this.localValue = val
+      if (val !== this.localValue) {
+        this.localValue = val
+        this.$refs.field.inputUpdated(val)
+      }
     }
   },
 
