@@ -76,14 +76,15 @@ export default {
       }, 300)
     },
 
-    inputMounted (val) {
+    inputMounted (value) {
+      this.filled = value && value !== ''
       this.validate()
     },
 
-    inputUpdated (val) {
-      this.filled = val && val !== ''
+    inputUpdated (value) {
+      this.filled = value && value !== ''
       this.validate()
-      this.validateRequired(val)
+      this.validateRequired(value)
       this.$forceUpdate()
     },
 
@@ -91,8 +92,8 @@ export default {
       this.hasError = this.checkError(this.validation)
     },
 
-    validateRequired (val = null) {
-      const filled = val && val !== ''
+    validateRequired (value = null) {
+      const filled = value && value !== ''
       this.hasRequiredError = this.checkError(this.required) && !filled
     },
 
