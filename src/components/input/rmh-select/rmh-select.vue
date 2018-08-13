@@ -45,8 +45,8 @@ export default {
       default: false
     },
     validation: {
-      type: [Boolean, String],
-      default: false
+      type: String,
+      default: ''
     }
   },
 

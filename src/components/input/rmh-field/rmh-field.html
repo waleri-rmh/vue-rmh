@@ -1,6 +1,6 @@
 <div class="rmh-field" :class="classes">
   <slot></slot>
-  <div v-if="hasRequiredError || hasError" class="error">
-    {{ hasRequiredError ? requiredErrorMessage : errorMessage }}
+  <div v-if="hasError" class="error">
+    {{ errorMessage }}
   </div>
 </div>

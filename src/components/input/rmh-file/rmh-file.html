@@ -1,4 +1,4 @@
-<rmh-field ref="field" :validation="validation" :placeholder="placeholder" :required="required" class="has-rmh-file" :class="classes">
+<rmh-field ref="field" :validation-term="validation" :placeholder="placeholder" :required="required" class="has-rmh-file" :class="classes">
   <label v-if="label && label !== ''">{{ label }}</label>
   <span class="placeholder" v-if="placeholder && placeholder !== '' && model.value === ''">{{ placeholder }}</span>
   <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>

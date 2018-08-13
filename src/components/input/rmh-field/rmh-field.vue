@@ -11,9 +11,9 @@ export default {
       type: Boolean,
       default: false
     },
-    validation: {
-      type: [Boolean, String],
-      default: false
+    validationTerm: {
+      type: String,
+      default: ''
     },
     required: {
       type: [Boolean, String],
@@ -22,7 +22,7 @@ export default {
     placeholder: {
       type: String,
       default: ''
-    },
+    }
   },
 
   mixins: [component],
@@ -32,73 +32,58 @@ export default {
       return {
         focused: this.focused,
         filled: (this.filled && !this.static) || this.placeholder !== '',
-        invalid: this.hasError || this.hasRequiredError
+        invalid: this.hasError
       }
-    },
-
-    errorMessage () {
-      return typeof this.validation === 'string' ? this.validation : ''
-    },
-
-    requiredErrorMessage () {
-      return typeof this.required === 'string' ? this.required : ''
-    },
+    }
   },
 
   data: () => ({
     focused: false,
     filled: false,
+    errorMessage: '',
+    value: '',
     hasError: false,
-    hasRequiredError: false
+    validationCallback: null
   }),
 
   watch: {
-    validation () {
-      this.validate()
-      this.$forceUpdate()
+    validationTerm () {
+      this.validateSolo()
     }
   },
 
+
   methods: {
     focus (e) {
-      const value = e.target ? e.target.value : e.value
-      this.filled = value && value !== ''
+      this.value = e.target ? e.target.value : e.value
+      this.filled = this.value && this.value !== ''
       this.focused = true
     },
 
     blur (e) {
-      const value = e.target ? e.target.value : e.value
-      this.filled = value && value !== ''
-      this.validate()
-      this.validateRequired(value)
+      this.value = e.target ? e.target.value : e.value
+      this.filled = this.value && this.value !== ''
+      this.validateSolo()
       setTimeout(() => {
         this.focused = false
       }, 300)
     },
 
     inputMounted (value) {
-      this.filled = value && value !== ''
-      this.validate()
+      this.value = value
+      this.filled = this.value && this.value !== ''
+      this.validateSolo()
     },
 
     inputUpdated (value) {
-      this.filled = value && value !== ''
-      this.validate()
-      this.validateRequired(value)
-      this.$forceUpdate()
+      this.value = value
+      this.filled = this.value && this.value !== ''
+      this.validateSolo()
     },
 
-    validate () {
-      this.hasError = this.checkError(this.validation)
-    },
-
-    validateRequired (value = null) {
-      const filled = value && value !== ''
-      this.hasRequiredError = this.checkError(this.required) && !filled
-    },
-
-    checkError (value) {
-      return typeof value === 'boolean' ? value === true : true
+    validateSolo () {
+      if (!this.validationCallback) return
+      this.validationCallback(this)
     }
   }
 }
