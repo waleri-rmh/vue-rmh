@@ -44,10 +44,6 @@ export default {
       type: [Boolean, String],
       default: false
     },
-    validation: {
-      type: String,
-      default: ''
-    },
     multiple: {
       type: Boolean,
       default: false
@@ -59,6 +55,10 @@ export default {
     drop: {
       type: Boolean,
       default: false
+    },
+    validation: {
+      type: Object,
+      default: null
     }
   },
 

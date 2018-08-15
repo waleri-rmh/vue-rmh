@@ -4,7 +4,8 @@ export default {
   name: 'rmh-validator',
 
   data: () => ({
-    validator: null
+    validator: null,
+    errors: {}
   }),
 
   created () {
@@ -18,14 +19,18 @@ export default {
   },
 
   methods: {
-    rmhv_add (component) {
-      if (!this.$root.validator.bag.includes(component))
-        this.$root.validator.bag.push(component)
+    rmhv_add (error) {
+      this.errors[error.key].has = true
+      this.errors[error.key].get = error.error
+      if (!this.$root.validator.bag.includes(error))
+        this.$root.validator.bag.push(error)
       this.rmhv_count()
     },
 
-    rmhv_remove (component) {
-      this.$root.validator.bag = this.$root.validator.bag.filter(item => item._uid !== component._uid)
+    rmhv_remove (key) {
+      this.errors[key].has = false
+      this.errors[key].get = ''
+      this.$root.validator.bag = this.$root.validator.bag.filter(item => item.key !== key)
       this.rmhv_count()
     },
 
@@ -39,54 +44,67 @@ export default {
       this.$root.validator.hasErrors = this.$root.validator.errors > 0
     },
 
+    rmhv_has_error (key) {
+      this.$root.validator.bag.map((item) => {
+        if (item.key === key) {
+          return true
+        }
+      })
+      return false
+    },
+
+    rmhv_get_error (key) {
+      return this.$root.validator.bag.filter(item => item.key === key)[0].error
+    },
+
     rmhv_init () {
       this.$forceUpdate()
       this.$nextTick(() => {
         this.$root.validator = this.validator
         this.$root.validators = this.$options.validators
-        this.rmhv_init_recursive(this.$root)
+        const keys = Object.keys(this.$root.validators)
+        if (keys.length > 0) {
+          this.rmhv_set_watcher(keys)
+        }
       })
     },
 
-    rmhv_init_recursive (component) {
-      for (const child of component.$children) {
-        if (child.$props && child.$props.validationTerm) {
-          child.validationCallback = this.rmhv_trigger_validation
-        }
-        this.rmhv_init_recursive(child)
-      }
+    rmhv_set_watcher (keys) {
+      keys.map((key) => {
+        this.errors[key] = { has: false }
+        this.errors[key] = { get: '' }
+        this.$watch(key, (value) => {
+          this.rmhv_validate(key, value)
+        });
+      })
     },
 
     rmhv_validation () {
-      this.rmhv_clear()
-      this.rmhv_validation_recursive(this.$root)
+      if (!this.$root) return
+      this.$forceUpdate()
+      this.$nextTick(() => {
+        const keys = Object.keys(this.$root.validators)
+        if (keys.length > 0) {
+          keys.map((key) => {
+            this.rmhv_validate(key, this[key])
+          })
+        }
+      })
     },
 
-    rmhv_validation_recursive (component) {
-      for (const child of component.$children) {
-        this.rmhv_trigger_validation(child)
-        this.rmhv_validation_recursive(child)
-      }
-    },
-
-    rmhv_trigger_validation (component) {
-      if (this.$root.validators === null) return
-      if (component.$props) {
-        const term = component.$props.validationTerm
-        if (term && term !== false) {
-          const validation = this.$root.validators[term]
-          if (validation) {
-            const result = validation(component.value)
-            if (result !== false) {
-              component.errorMessage = result
-              component.hasError = true
-              this.rmhv_add(component)
-            } else {
-              component.errorMessage = ''
-              component.hasError = false
-              this.rmhv_remove(component)
-            }
-          }
+    rmhv_validate (key, value) {
+      this.$forceUpdate()
+      const validation = this.$root.validators[key]
+      if (validation) {
+        const error = validation(value)
+        if (error !== false) {
+          this.rmhv_add({
+            key: key,
+            value: value,
+            error: error
+          })
+        } else {
+          this.rmhv_remove(key)
         }
       }
     }

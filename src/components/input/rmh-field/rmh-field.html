@@ -1,6 +1,4 @@
-<div class="rmh-field" :class="classes">
+<div class="rmh-field" :class="[classes, { invalid: validation && validation.has }]">
   <slot></slot>
-  <div v-if="hasError" class="error">
-    {{ errorMessage }}
-  </div>
+  <span v-if="validation && validation.has" class="error">{{ validation.get }}</span>
 </div>

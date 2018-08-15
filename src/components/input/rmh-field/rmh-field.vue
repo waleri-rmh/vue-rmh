@@ -11,10 +11,6 @@ export default {
       type: Boolean,
       default: false
     },
-    validationTerm: {
-      type: String,
-      default: ''
-    },
     required: {
       type: [Boolean, String],
       default: false
@@ -22,6 +18,10 @@ export default {
     placeholder: {
       type: String,
       default: ''
+    },
+    validation: {
+      type: Object,
+      default: null
     }
   },
 
@@ -31,8 +31,7 @@ export default {
     classes () {
       return {
         focused: this.focused,
-        filled: (this.filled && !this.static) || this.placeholder !== '',
-        invalid: this.hasError
+        filled: (this.filled && !this.static) || this.placeholder !== ''
       }
     }
   },
@@ -41,17 +40,8 @@ export default {
     focused: false,
     filled: false,
     errorMessage: '',
-    value: '',
-    hasError: false,
-    validationCallback: null
+    value: ''
   }),
-
-  watch: {
-    validationTerm () {
-      this.validateSolo()
-    }
-  },
-
 
   methods: {
     focus (e) {
@@ -63,7 +53,6 @@ export default {
     blur (e) {
       this.value = e.target ? e.target.value : e.value
       this.filled = this.value && this.value !== ''
-      this.validateSolo()
       setTimeout(() => {
         this.focused = false
       }, 300)
@@ -72,18 +61,11 @@ export default {
     inputMounted (value) {
       this.value = value
       this.filled = this.value && this.value !== ''
-      this.validateSolo()
     },
 
     inputUpdated (value) {
       this.value = value
       this.filled = this.value && this.value !== ''
-      this.validateSolo()
-    },
-
-    validateSolo () {
-      if (!this.validationCallback) return
-      this.validationCallback(this)
     }
   }
 }
