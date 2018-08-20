@@ -182,15 +182,17 @@ export default {
     },
 
     acceptHandling () {
-      for (let file of this.files) {
-        const ext = '.' + file.name.split('.').pop()
-        const meme = file.type
-        const memeAllrounder = meme.split('/').shift() + '/*'
-        const isValideExt = ext && ext !== '' && this.accept.indexOf(ext) > -1
-        const isValideMeme = meme && meme !== '' && this.accept.indexOf(meme) > -1 || this.accept.indexOf(memeAllrounder) > -1
-        if (!(isValideExt || isValideMeme)) return false
+      if (this.accept !== '') {
+        for (let file of this.files) {
+          const ext = '.' + file.name.split('.').pop()
+          const meme = file.type
+          const memeAllrounder = meme.split('/').shift() + '/*'
+          const isValideExt = ext && ext !== '' && this.accept.indexOf(ext) > -1
+          const isValideMeme = meme && meme !== '' && this.accept.indexOf(meme) > -1 || this.accept.indexOf(memeAllrounder) > -1
+          if (!(isValideExt || isValideMeme)) return false
+        }
       }
-      return this.files.length > 0 ? true : false
+      return this.files.length > 0
     },
 
     initDrop () {
