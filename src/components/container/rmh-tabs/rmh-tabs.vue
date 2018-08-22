@@ -43,28 +43,26 @@ export default {
     setSelectedTabIndex (index) {
       this.selectedTabIndex = parseInt(index)
       this.selectedTab = this.tabs[index]
-      for (let tab of this.tabs) {
+      this.tabs.forEach((tab) => {
         tab.hide()
         if (tab === this.selectedTab) {
           tab.show()
         }
-      }
+      })
     },
 
     fetchTabs () {
-      this.tabs = this.$children.filter(child => {
-        return child.$options._componentTag === 'rmh-tab'
-      })
+      this.tabs = this.$children.filter(child => child.$options._componentTag === 'rmh-tab')
       this.checkPropActivated()
     },
 
     checkPropActivated () {
-      for (let tab in this.tabs) {
-        if (this.tabs[tab].active) {
-          this.setSelectedTabIndex(tab)
+      this.tabs.forEach((tab, index) => {
+        if (tab.active) {
+          this.setSelectedTabIndex(index)
           return
         }
-      }
+      })
       this.setSelectedTabIndex(0)
     },
 

@@ -1,0 +1,32 @@
+<template src="./rmh-step-header.html"></template>
+
+<script>
+import component from '@/mixins/component'
+
+export default {
+  name: 'rmh-step-header',
+
+  mixins: [component],
+
+  props: {
+    active: {
+      type: Boolean,
+      default: false
+    }
+  },
+
+  computed: {
+    hasDefaultSlot () {
+      return !!this.$slots.default
+    },
+
+    classes () {
+      return {
+        'active': this.active
+      }
+    }
+  }
+}
+</script>
+
+<style src="./rmh-step-header.styl" lang="stylus"></style>
