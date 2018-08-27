@@ -2,11 +2,16 @@
 
 <script>
 import component from '@/mixins/component'
+import rmhStepAction from '../rmh-step-action/rmh-step-action'
 
 export default {
   name: 'rmh-step',
 
   mixins: [component],
+
+  components: {
+    rmhStepAction
+  },
 
   props: {
     label: {
@@ -16,12 +21,44 @@ export default {
     active: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 
   data: () => ({
-    visible: false
+    visible: false,
+    _disabled: false
   }),
+
+  watch: {
+    disabled (value) {
+      if (value !== this._disabled)
+        this._disabled = value
+    },
+    _disabled (value) {
+      if (value !== this.disabled)
+        this.$emit('update:disabled', value)
+    }
+  },
+
+  mounted () {
+    this._disabled = this.disabled
+  },
+
+  computed: {
+    hasDefaultSlot () {
+      return !!this.$slots.default
+    },
+
+    hasCustomAction () {
+      if (!this.hasDefaultSlot) return false
+      const actions = this.$slots.default.filter(child => child.componentOptions && child.componentOptions.tag === 'rmh-step-action')
+      return actions.length > 0
+    }
+  },
 
   methods: {
     show () {
@@ -30,6 +67,36 @@ export default {
 
     hide () {
       this.visible = false
+    },
+
+    disable () {
+      this._disabled = true
+      this.$parent._disabled = true
+    },
+
+    enable () {
+      this._disabled = false
+      this.$parent._disabled = false
+    },
+
+    update (action) {
+      this.$forceUpdate()
+      this.$nextTick(() => {
+        this.setSelectedStepIndex(action === 'next' ? this.nextIndex() : this.prevIndex())
+        this.$parent.update(action)
+      })
+    },
+
+    setSelectedStepIndex (index) {
+      this.$parent.setSelectedStepIndex(index)
+    },
+
+    prevIndex (current = null) {
+      return this.$parent.prevIndex(current)
+    },
+
+    nextIndex (current = null) {
+      return this.$parent.nextIndex(current)
     }
   }
 }

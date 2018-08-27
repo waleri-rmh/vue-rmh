@@ -10,36 +10,24 @@ export default {
 
   mixins: [component],
 
-  components: {
-    rmhStepHeader,
-    rmhButton
-  },
-
   props: {
     prevLabel: {
       type: String,
-      default: 'prev'
-    },
-    prevCallback: {
-      type: Function,
-      default: null
+      default: 'Prev'
     },
     nextLabel: {
       type: String,
-      default: 'next'
-    },
-    nextCallback: {
-      type: Function,
-      default: null
+      default: 'Next'
     },
     doneLabel: {
       type: String,
       default: 'Done'
-    },
-    doneCallback: {
-      type: Function,
-      default: null
     }
+  },
+
+  components: {
+    rmhStepHeader,
+    rmhButton
   },
 
   data: () => ({
@@ -70,6 +58,8 @@ export default {
 
   methods: {
     setSelectedStepIndex (index) {
+      if (index === null || (index !== null && this.steps[index]._disabled))
+        return
       this.selectedStepIndex = parseInt(index)
       this.selectedStep = this.steps[index]
       this.steps.forEach((step) => {
@@ -92,7 +82,7 @@ export default {
           return
         }
       })
-      this.setSelectedStepIndex(0)
+      this.setSelectedStepIndex(this.nextIndex(-1))
     },
 
     changedSelectedStep () {
@@ -103,23 +93,56 @@ export default {
       })
     },
 
-    prev () {
-      this.setSelectedStepIndex(this.selectedStepIndex - 1)
-      if (this.prevCallback)
-        this.prevCallback()
+    beforeUpdate (action) {
+      this.$emit('beforeUpdate', {
+        steps: {
+          prev: this.steps[this.prevIndex()],
+          current: this.selectedStep,
+          next: this.steps[this.nextIndex()]
+        },
+        index: this.selectedStepIndex,
+        action: action
+      })
+      this.$forceUpdate()
     },
 
-    next () {
-      this.setSelectedStepIndex(this.selectedStepIndex + 1)
-      if (this.nextCallback)
-        this.nextCallback()
+    update (action) {
+      this.$emit('update', {
+        steps: {
+          prev: this.steps[this.prevIndex()],
+          current: this.selectedStep,
+          next: this.steps[this.nextIndex()]
+        },
+        index: this.selectedStepIndex,
+        action: action
+      })
     },
 
     done () {
-      if (this.doneCallback)
-        this.doneCallback()
-      else this.$emit('done')
+      this.$emit('done')
     },
+
+    prevIndex (current = null) {
+      if (current === null)
+        current = this.selectedStepIndex
+      let prevIndex = current - 1
+      if (prevIndex < 0)
+        return null
+      if (this.steps[prevIndex] && this.steps[prevIndex]._disabled === false)
+        return prevIndex
+      else return this.prevIndex(prevIndex)
+    },
+
+    nextIndex (current = null) {
+      if (current === null)
+        current = this.selectedStepIndex
+      let nextIndex = current + 1
+      if (nextIndex > this.steps.length - 1)
+        return null
+      if (this.steps[nextIndex] && this.steps[nextIndex]._disabled === false)
+        return nextIndex
+      else return this.nextIndex(nextIndex)
+    }
   }
 }
 </script>

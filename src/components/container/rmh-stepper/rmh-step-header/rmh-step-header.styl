@@ -11,12 +11,16 @@
   justify-content: center
 
   .rmh-step-label
-    padding: 2px 5px
+    padding: 4px 10px
     overflow: hidden
     background: #eee
     border-radius: 3px
     margin-top: 20px
-    border: 1px solid #ddd
+    max-width: 90%
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center
 
     &:before
       position: absolute
@@ -54,3 +58,10 @@
 
     &:before, &:after
       background: rmh-color-primary
+
+  &.disabled
+    color: rmh-color-grey
+    cursor: default
+
+    &:before, &:after
+      background: rmh-color-grey-lighter

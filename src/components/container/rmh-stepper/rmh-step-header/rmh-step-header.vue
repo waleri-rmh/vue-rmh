@@ -12,6 +12,10 @@ export default {
     active: {
       type: Boolean,
       default: false
+    },
+    disabled: {
+      type: Boolean,
+      default: false
     }
   },
 
@@ -22,7 +26,8 @@ export default {
 
     classes () {
       return {
-        'active': this.active
+        'active': this.active,
+        'disabled': this.disabled
       }
     }
   }

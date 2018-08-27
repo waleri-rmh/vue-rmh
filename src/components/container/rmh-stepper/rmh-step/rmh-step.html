@@ -1,3 +1,4 @@
 <div v-if="visible">
   <slot></slot>
+  <rmh-step-action v-if="!hasCustomAction"></rmh-step-action>
 </div>
