@@ -17,7 +17,7 @@ export default {
 
   props: {
     value: {
-      type: [String, Number],
+      type: [String, Number, Object],
       default: ''
     },
     label: {
@@ -52,6 +52,7 @@ export default {
 
   data: () => ({
     localValue: '',
+    localValueText: '',
     selectedItem: {
       value: null,
       text: ''
@@ -61,6 +62,7 @@ export default {
 
   mounted () {
     this.localValue = this.value
+    this.localValueText = this.getText(this.value)
     this.$refs.field.inputMounted(this.value)
   },
 
@@ -92,6 +94,7 @@ export default {
     value (val) {
       if (val !== this.localValue) {
         this.localValue = val
+        this.localValueText = this.getText(val)
         this.$refs.field.inputUpdated(val)
       }
     }
@@ -121,8 +124,16 @@ export default {
     select (item) {
       this.selectedItem = item
       this.localValue = item.value
+      this.localValueText = this.getText(item.value)
       this.$refs.field.inputMounted(item.value)
       this.open = false
+    },
+
+    getText (value) {
+      if (typeof value === 'object' && value !== null) {
+        return value.text
+      }
+      return value.toString()
     }
   }
 }
