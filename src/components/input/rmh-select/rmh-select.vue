@@ -130,10 +130,13 @@ export default {
     },
 
     getText (value) {
-      if (typeof value === 'object' && value !== null) {
-        return value.text
+      if (value !== null) {
+        if (typeof value === 'object') {
+          return value.text
+        }
+        return value.toString()
       }
-      return value.toString()
+      return ''
     }
   }
 }
