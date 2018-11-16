@@ -20,6 +20,18 @@ export default {
     doneLabel: {
       type: String,
       default: null
+    },
+    prevDisabled: {
+      type: Boolean,
+      default: false
+    },
+    nextDisabled: {
+      type: Boolean,
+      default: false
+    },
+    doneDisabled: {
+      type: Boolean,
+      default: false
     }
   },
 

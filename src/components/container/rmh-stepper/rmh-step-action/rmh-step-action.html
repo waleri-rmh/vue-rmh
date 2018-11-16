@@ -1,14 +1,14 @@
 <div class="rmh-step-action" :class="classes" v-bind="$attrs" v-on="$listeners">
-  <rmh-button :disabled="prevIndex(selectedStepIndex) === null" @click="prev"
+  <rmh-button :disabled="prevDisabled || prevIndex(selectedStepIndex) === null" @click="prev"
     v-if="selectedStepIndex > 0">
     {{ prevLabel || _prevLabel }}
   </rmh-button>
   <slot></slot>
-  <rmh-button :disabled="nextIndex(selectedStepIndex) === null" @click="next" class="primary"
+  <rmh-button :disabled="nextDisabled || nextIndex(selectedStepIndex) === null" @click="next" class="primary"
     v-if="selectedStepIndex < steps.length - 1">
     {{ nextLabel || _nextLabel }}
   </rmh-button>
-  <rmh-button @click="done" class="primary" v-if="selectedStepIndex === steps.length - 1">
+  <rmh-button :disabled="doneDisabled" @click="done" class="primary" v-if="selectedStepIndex === steps.length - 1">
     {{ doneLabel || _doneLabel }}
   </rmh-button>
 </div>
