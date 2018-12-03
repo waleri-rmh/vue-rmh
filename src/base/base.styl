@@ -1,19 +1,19 @@
 *,
 *:before,
-*:after 
+*:after
   box-sizing: inherit
 
 * > :first-child
     margin-top: 0
-  
+
 * > :last-child
     margin-bottom: 0
 
-html 
+html
   height: 100%
   box-sizing: border-box
 
-body 
+body
   min-height: 100%
   margin: 0
   position: relative
@@ -29,7 +29,7 @@ body
  * Overrides - Default buttons
  */
 
-a:not(.md-button) 
+a:not(.md-button)
   transition: .3s ease
   transition-property: color, background-color, opacity
 
@@ -43,13 +43,9 @@ object,
 embed,
 canvas,
 video,
-iframe 
-  max-width: 100%
+iframe
   font-style: italic
   vertical-align: middle
-
-  &:not(.md-image) 
-    height: auto
 
 /**
  * Suppress the focus outline on links that cannot be accessed via keyboard.
@@ -59,5 +55,5 @@ iframe
 /*
    ========================================================================== */
 
-[tabindex="-1"]:focus 
+[tabindex="-1"]:focus
   outline: none !important
