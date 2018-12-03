@@ -32,6 +32,10 @@ export default {
       type: String,
       default: ''
     },
+    area: {
+      type: Boolean,
+      default: false
+    },
     disabled: {
       type: Boolean,
       default: false
@@ -71,7 +75,8 @@ export default {
         'with-icon': this.icon !== '',
         'bordered': this.bordered,
         'disabled': this.disabled,
-        'required': this.required
+        'required': this.required,
+        'is-textarea': this.area
       }
     }
   },

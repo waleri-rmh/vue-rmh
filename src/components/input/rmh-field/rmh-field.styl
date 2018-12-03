@@ -7,6 +7,7 @@
   padding: 0
   height: 30px
   max-height: 30px
+  max-height: 30px
   line-height: 30px
   border-top: 1px solid transparent
   border-bottom: 1px solid transparent
@@ -49,9 +50,6 @@
     .placeholder
       color: rmh-color-grey-darker
 
-    &.focused
-      border-bottom-color: rmh-color-primary
-      
     &:not(.select).focused, &.filled
       label
         padding: 0
@@ -60,6 +58,8 @@
         align-self: baseline
 
     &.focused
+      border-bottom-color: rmh-color-primary
+
       label
         color: rmh-color-primary
 
@@ -100,6 +100,26 @@
       .rmh-button:last-of-type
         border-radius: 0 5px 5px 0
 
+  &.is-textarea
+    max-height: 100%
+    height: auto
+
+    label, .placeholder
+      align-self: flex-start
+      margin: 10px
+
+    &.bordered
+      padding: 0
+
+    &:not(.bordered)
+
+      textarea
+        background: #f9f9f9
+
+    textarea
+      min-height: 80px
+      padding: 10px
+
   &.disabled
     color: rmh-color-grey
 
@@ -115,7 +135,7 @@
 
   &.invalid:not(.no-field)
     border-bottom: 1px solid rmh-color-red
-    
+
     &.bordered
       border-color: rmh-color-red
 
