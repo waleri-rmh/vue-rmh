@@ -55,13 +55,15 @@ export default {
 
     localValue: {
       get () {
-        return this.value
+        return this.mutable(this.value)
       },
       set (value) {
-        if (value !== this.value) {
-          this.$emit('input', value)
-          this.$refs.field.update(value)
-        }
+        this.$nextTick(() => {
+          if (value !== this.value) {
+            this.$emit('input', value)
+            this.$refs.field.update(value)
+          }
+        })
       }
     }
   },
