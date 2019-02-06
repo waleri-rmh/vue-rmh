@@ -50,20 +50,6 @@ export default {
         'right': this.right
       }
     }
-  },
-
-  methods: {
-    calculateContentHeight () {
-      // const toolbar = document.querySelector('.rmh-app > .rmh-app-container > .rmh-toolbar')
-      // const content = document.querySelector('.rmh-app > .rmh-app-container > .rmh-content')
-      // if (!content)
-      //   return
-      // if (this.fixedToolbar && toolbar) {
-      //     content.style.height = 'calc(100% - ' + toolbar.clientHeight + 'px)'
-      // } else {
-      //   content.style.height = 'auto'
-      //}
-    }
   }
 }
 </script>

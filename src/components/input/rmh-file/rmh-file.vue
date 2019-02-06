@@ -2,13 +2,17 @@
 
 <script>
 import component from '@/mixins/component'
+import input from '@/mixins/input'
 import rmhField from '../rmh-field/rmh-field'
 import rmhIcon from '../rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-file',
 
-  mixins: [component],
+  mixins: [
+    component,
+    input
+  ],
 
   components: {
     rmhField,
@@ -20,28 +24,12 @@ export default {
       type: Object,
       default: {}
     },
-    label: {
-      type: String,
-      default: ''
-    },
-    placeholder: {
-      type: String,
-      default: ''
-    },
     icon: {
       type: String,
       default: 'attach_file'
     },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
     bordered: {
       type: Boolean,
-      default: false
-    },
-    required: {
-      type: [Boolean, String],
       default: false
     },
     multiple: {
@@ -55,10 +43,6 @@ export default {
     drop: {
       type: Boolean,
       default: false
-    },
-    validation: {
-      type: Object,
-      default: null
     }
   },
 
@@ -74,17 +58,11 @@ export default {
       value: '',
       files: []
     }, this.value)
-    this.$refs.field.inputMounted(this.model.value)
+    this.$refs.field.update(this.model.value)
     this.initDrop()
   },
 
   computed: {
-    listeners () {
-      let l = { ...this.$listeners }
-      delete l.input
-      return l
-    },
-
     classes () {
       return {
         'with-icon': this.icon !== '',
@@ -176,7 +154,7 @@ export default {
           files: []
         }
       }
-      this.$refs.field.inputUpdated(this.model.value)
+      this.$refs.field.update(this.model.value)
       this.$emit('input', this.model)
       this.$emit('change', this.files)
     },

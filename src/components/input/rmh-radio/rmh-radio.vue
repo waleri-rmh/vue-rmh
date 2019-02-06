@@ -17,26 +17,10 @@ export default {
 
   props: {
     model: [String, Number, Boolean],
-    id: {
-      type: String,
-      default: null
-    },
     name: [String, Number],
     value: {
       type: [String, Number, Boolean],
       default: 'on'
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    required: {
-      type: Boolean,
-      default: false
     },
     inline: {
       type: Boolean,
@@ -49,22 +33,11 @@ export default {
     event: 'change'
   },
 
-  data: () => ({
-    uId: null
-  }),
-
   mounted () {
-    this.$refs.field.inputMounted(this.value)
-    this.uId = this.id ? this.id : 'rmh-radio-' + this._uid
+    this.$refs.field.update(this.value)
   },
 
   computed: {
-    listeners () {
-      let l = { ...this.$listeners }
-      delete l.input
-      return l
-    },
-
     isSelected () {
       return this.model === this.value
     },
@@ -80,14 +53,6 @@ export default {
   },
 
   methods: {
-    focus (e) {
-      this.$refs.field.focus(e)
-    },
-
-    blur (e) {
-      this.$refs.field.blur(e)
-    },
-
     toggle (e) {
       if (!this.disabled) {
         this.$emit('change', this.value)

@@ -2,13 +2,17 @@
 
 <script>
 import component from '@/mixins/component'
+import input from '@/mixins/input'
 import rmhField from '../rmh-field/rmh-field'
 import rmhIcon from '../rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-checkbox',
 
-  mixins: [component],
+  mixins: [
+    component,
+    input
+  ],
 
   components: {
     rmhField,
@@ -17,26 +21,10 @@ export default {
 
   props: {
     model: [String, Boolean, Object, Number, Array],
-    id: {
-      type: String,
-      default: null
-    },
     name: [String, Number],
     value: {
       type: [String, Boolean, Object, Number],
       default: 'on'
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
-    required: {
-      type: Boolean,
-      default: false
     },
     inline: {
       type: Boolean,
@@ -49,22 +37,11 @@ export default {
     event: 'change'
   },
 
-  data: () => ({
-    uId: null
-  }),
-
   mounted () {
-    this.$refs.field.inputMounted(this.value)
-    this.uId = this.id ? this.id : 'rmh-checkbox-' + this._uid
+    this.$refs.field.update(this.value)
   },
 
   computed: {
-    listeners () {
-      let l = { ...this.$listeners }
-      delete l.input
-      return l
-    },
-
     isSelected () {
       if (this.isModelArray) {
         return this.model.includes(this.value)
@@ -126,14 +103,6 @@ export default {
 
     handleBooleanCheckbox () {
       this.$emit('change', !this.model)
-    },
-
-    focus (e) {
-      this.$refs.field.focus(e)
-    },
-
-    blur (e) {
-      this.$refs.field.blur(e)
     },
 
     toggle (e) {

@@ -2,13 +2,17 @@
 
 <script>
 import component from '@/mixins/component'
+import input from '@/mixins/input'
 import rmhField from '../rmh-field/rmh-field'
 import rmhIcon from '../rmh-icon/rmh-icon'
 
 export default {
   name: 'rmh-textbox',
 
-  mixins: [component],
+  mixins: [
+    component,
+    input
+  ],
 
   components: {
     rmhField,
@@ -18,15 +22,7 @@ export default {
   props: {
     value: {
       type: [String, Number],
-      default: ''
-    },
-    label: {
-      type: String,
-      default: ''
-    },
-    placeholder: {
-      type: String,
-      default: ''
+      default: null
     },
     icon: {
       type: String,
@@ -36,40 +32,17 @@ export default {
       type: Boolean,
       default: false
     },
-    disabled: {
-      type: Boolean,
-      default: false
-    },
     bordered: {
       type: Boolean,
       default: false
-    },
-    required: {
-      type: [Boolean, String],
-      default: false
-    },
-    validation: {
-      type: Object,
-      default: null
     }
   },
 
-  data: () => ({
-    localValue: ''
-  }),
-
   mounted () {
-    this.localValue = this.value
-    this.$refs.field.inputMounted(this.value)
+    this.$refs.field.update(this.value)
   },
 
   computed: {
-    listeners () {
-      let l = { ...this.$listeners }
-      delete l.input
-      return l
-    },
-
     classes () {
       return {
         'with-icon': this.icon !== '',
@@ -78,33 +51,28 @@ export default {
         'required': this.required,
         'is-textarea': this.area
       }
+    },
+
+    localValue: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        if (value !== this.value) {
+          this.$emit('input', value)
+          this.$refs.field.update(value)
+        }
+      }
     }
   },
 
   watch: {
-    localValue (val) {
-      if (val !== this.value) {
-        this.$emit('input', val)
-        this.$refs.field.inputUpdated(val)
-      }
-    },
-    value (val) {
-      if (val !== this.localValue) {
-        this.localValue = val
-        this.$refs.field.inputUpdated(val)
+    value (value) {
+      if (value !== this.localValue) {
+        this.$refs.field.update(value)
       }
     }
   },
-
-  methods: {
-    focus (e) {
-      this.$refs.field.focus(e)
-    },
-
-    blur (e) {
-      this.$refs.field.blur(e)
-    }
-  }
 }
 </script>
 

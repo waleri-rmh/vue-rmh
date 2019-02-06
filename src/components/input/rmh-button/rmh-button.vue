@@ -16,7 +16,7 @@ export default {
   props: {
     value: {
       type: String,
-      default: ''
+      default: null
     },
     disabled: {
       type: Boolean,
@@ -28,28 +28,24 @@ export default {
     }
   },
 
-  data: () => ({
-    localValue: ''
-  }),
-
-  mounted () {
-    this.localValue = this.value
-  },
-
   computed: {
-    listeners () {
-      let l = { ...this.$listeners }
-      delete l.input
-      return l
+    localValue: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        if (value !== this.value) {
+          this.$emit('input', value)
+        }
+      }
     }
   },
 
   watch: {
-    localValue (val) {
-      this.$emit('input', val)
-    },
     value (val) {
-      this.localValue = val
+      if (value !== this.localValue) {
+        this.localValue = value
+      }
     }
   }
 }

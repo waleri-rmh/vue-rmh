@@ -16,7 +16,7 @@ export default {
   props: {
     value: {
       type: [String, Number, Object],
-      default: ''
+      default: null
     },
     text: {
       type: String,
@@ -33,23 +33,15 @@ export default {
   },
 
   data: () => ({
-    localValue: '',
     parent: null
   }),
 
   mounted () {
-    this.localValue = this.value
     this.parent = this.parentByName('rmh-select', this)
     this.preSelect()
   },
 
   computed: {
-    listeners () {
-      let l = { ...this.$listeners }
-      delete l.div
-      return l
-    },
-
     isSelected () {
       return this.parent && this.parent.selectedItem.value === this.item.value
     },
@@ -59,18 +51,16 @@ export default {
         value: this.localValue,
         text: this.text || this.$slots.default[0].text
       }
-    }
-  },
-
-  watch: {
-    localValue (val) {
-      if (val !== this.value) {
-        this.$emit('input', val)
-      }
     },
-    value (val) {
-      if (val !== this.localValue) {
-        this.localValue = val
+
+    localValue: {
+      get () {
+        return this.value
+      },
+      set (value) {
+        if (value !== this.value) {
+          this.$emit('input', value)
+        }
       }
     }
   },

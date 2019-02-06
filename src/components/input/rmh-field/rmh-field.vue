@@ -58,12 +58,7 @@ export default {
       }, 300)
     },
 
-    inputMounted (value) {
-      this.value = value
-      this.filled = this.value && this.value !== ''
-    },
-
-    inputUpdated (value) {
+    update (value) {
       this.value = value
       this.filled = this.value && this.value !== ''
     }
