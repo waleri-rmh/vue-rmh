@@ -1,9 +1,12 @@
 <template src="./rmh-radio.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import rmhField from '../rmh-field/rmh-field'
-import rmhIcon from '../rmh-icon/rmh-icon'
+import { component } from '@/mixins'
+
+import {
+  rmhField,
+  rmhIcon
+} from '@/components'
 
 export default {
   name: 'rmh-radio',

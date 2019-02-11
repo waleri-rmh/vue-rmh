@@ -1,8 +1,8 @@
 <template src="./rmh-button.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import rmhIcon from '../rmh-icon/rmh-icon'
+import { component } from '@/mixins'
+import { rmhIcon } from '@/components'
 
 export default {
   name: 'rmh-button',

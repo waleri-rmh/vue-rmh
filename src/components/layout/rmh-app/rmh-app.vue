@@ -1,10 +1,13 @@
 <template src="./rmh-app.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import rmhToolbar from '@/components/layout/rmh-toolbar/rmh-toolbar'
-import rmhDrawer from '@/components/layout/rmh-drawer/rmh-drawer'
-import rmhContent from '@/components/layout/rmh-content/rmh-content'
+import { component } from '@/mixins'
+
+import {
+  rmhToolbar,
+  rmhDrawer,
+  rmhContent
+} from '@/components'
 
 export default {
   name: 'rmh-app',

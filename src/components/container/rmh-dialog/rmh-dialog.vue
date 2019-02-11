@@ -1,12 +1,15 @@
 <template src="./rmh-dialog.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import rmhButton from '@/components/input/rmh-button/rmh-button'
-import rmhIcon from '@/components/input/rmh-icon/rmh-icon'
-import rmhDialogHeader from './rmh-dialog-header/rmh-dialog-header'
-import rmhDialogContent from './rmh-dialog-content/rmh-dialog-content'
-import rmhDialogAction from './rmh-dialog-action/rmh-dialog-action'
+import { component } from '@/mixins'
+
+import {
+  rmhButton,
+  rmhIcon,
+  rmhDialogHeader,
+  rmhDialogContent,
+  rmhDialogAction
+} from '@/components'
 
 export default {
   name: 'rmh-dialog',

@@ -1,9 +1,12 @@
 <template src="./rmh-table.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import rmhRow from './rmh-row/rmh-row'
-import rmhCell from './rmh-cell/rmh-cell'
+import { component } from '@/mixins'
+
+import {
+  rmhRow,
+  rmhCell
+} from '@/components'
 
 export default {
   name: 'rmh-table',

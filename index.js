@@ -1,7 +1,7 @@
 import 'es6-promise/auto'
 
 const validator = require('./src/functional/rmh-validator.js')
-const modules = require.context('./src/components/', true, /\.vue$/)
+const modules = require.context('./src/components', true, /\.vue$/)
 
 const rmhPlugin = {
   install (Vue) {

@@ -1,10 +1,15 @@
 <template src="./rmh-select.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import input from '@/mixins/input'
-import rmhField from '../rmh-field/rmh-field'
-import rmhIcon from '../rmh-icon/rmh-icon'
+import {
+  component,
+  input
+} from '@/mixins'
+
+import {
+  rmhField,
+  rmhIcon
+} from '@/components'
 
 export default {
   name: 'rmh-select',

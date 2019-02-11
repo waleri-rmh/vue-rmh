@@ -1,8 +1,8 @@
 <template src="./rmh-tabs.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import rmhTabHeader from './rmh-tab-header/rmh-tab-header'
+import { component } from '@/mixins'
+import { rmhTabHeader } from '@/components'
 
 export default {
   name: 'rmh-tabs',

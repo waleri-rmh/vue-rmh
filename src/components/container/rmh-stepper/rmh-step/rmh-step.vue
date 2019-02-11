@@ -1,8 +1,8 @@
 <template src="./rmh-step.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import rmhStepAction from '../rmh-step-action/rmh-step-action'
+import { component } from '@/mixins'
+import { rmhStepAction } from '@/components'
 
 export default {
   name: 'rmh-step',

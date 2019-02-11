@@ -1,7 +1,7 @@
 <template src="./rmh-step-header.html"></template>
 
 <script>
-import component from '@/mixins/component'
+import { component } from '@/mixins'
 
 export default {
   name: 'rmh-step-header',

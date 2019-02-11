@@ -1,7 +1,7 @@
 <template src="./rmh-field.html"></template>
 
 <script>
-import component from '@/mixins/component.vue'
+import { component } from '@/mixins'
 
 export default {
   name: 'rmh-field',

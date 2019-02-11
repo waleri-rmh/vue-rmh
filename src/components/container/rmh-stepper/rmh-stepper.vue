@@ -1,9 +1,12 @@
 <template src="./rmh-stepper.html"></template>
 
 <script>
-import component from '@/mixins/component'
-import rmhStepHeader from './rmh-step-header/rmh-step-header'
-import rmhButton from '@/components/input/rmh-button/rmh-button'
+import { component } from '@/mixins'
+
+import {
+  rmhButton,
+  rmhStepHeader
+} from '@/components'
 
 export default {
   name: 'rmh-stepper',

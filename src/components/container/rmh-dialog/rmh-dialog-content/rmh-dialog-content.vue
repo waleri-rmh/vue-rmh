@@ -1,7 +1,7 @@
 <template src="./rmh-dialog-content.html"></template>
 
 <script>
-import component from '@/mixins/component'
+import { component } from '@/mixins'
 
 export default {
   name: 'rmh-dialog-content',
