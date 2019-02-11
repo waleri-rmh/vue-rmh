@@ -1,0 +1,71 @@
+@import '~styles/variables'
+
+.rmh-picker
+  position: relative
+
+  input
+    flex: 1
+    margin: 0
+    padding: 0
+    border: 0px none
+    background: transparent
+    color: rmh-color-default
+    outline: none
+    font-size: inherit
+    font-family: inherit
+    font-weight: inherit
+    cursor: pointer
+
+  .options
+    z-index: 999
+    display: flex
+    align-self: flex-start
+    flex-direction: column
+    position: absolute
+    left: 0
+    right: 0
+    margin-top: 30px
+    background: rmh-color-white
+    border: 1px solid transparent
+    border-radius: 0 0 5px 5px
+    color: inherit
+    transition: .3s ease
+    height: auto
+    max-height: 0px
+    overflow: hidden
+    opacity: 0
+
+  .rmh-select-arrow
+    color: rmh-color-default-lighter
+    font-size: 22px
+    margin-right: 5px
+    transition: .6s ease
+    cursor: pointer
+    overflow: hidden
+
+  &.open
+    .options
+      opacity: 1
+      padding: 5px 0
+      transition: .5s ease
+      max-height: 200px
+      overflow: auto
+      box-shadow: 0 10px 20px -5px rmh-color-grey
+      border-color: rmh-color-grey
+      border-top: 1px solid rmh-color-primary
+
+    .rmh-icon.rmh-select-arrow
+      transform: rotateX(180deg)
+      color: rmh-color-primary
+
+  &:not(.open)
+    .options
+      pointer-events: none
+
+  &.disabled
+    cursor: default
+
+    input
+    .rmh-select-arrow
+      cursor: default
+      color: rmh-color-grey

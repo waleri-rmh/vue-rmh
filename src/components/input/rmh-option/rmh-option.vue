@@ -46,6 +46,13 @@ export default {
       return this.parent && this.parent.selectedItem.value === this.item.value
     },
 
+    classes () {
+      return {
+        selected: this.isSelected,
+        'with-icon': this.icon !== ''
+      }
+    },
+
     item () {
       return {
         value: this.localValue,

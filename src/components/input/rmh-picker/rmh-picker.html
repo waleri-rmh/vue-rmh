@@ -1,10 +1,10 @@
-<rmh-field class="rmh-select" v-bind="[$attrs, { validation, placeholder, required }]" :class="classes" ref="field">
+<rmh-field class="rmh-picker" v-bind="[$attrs, { validation, placeholder, required }]" :class="classes" ref="field">
   <div class="options" @selected="select">
     <slot></slot>
   </div>
 
-  <label v-if="label" v-html="label" />
-  <span class="placeholder" v-if="placeholder && placeholder !== '' && localValue === ''" v-html="placeholder" />
+  <label v-if="label">{{ label }}</label>
+  <span class="placeholder" v-if="placeholder && placeholder !== '' && localValue === ''">{{ placeholder }}</span>
   <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
   <input ref="input" readonly v-on="listeners" v-model="localValueText" @focus="focus" @blur="blur" />
   <rmh-icon class="rmh-select-arrow" @click.native="fakeFocus">keyboard_arrow_down</rmh-icon>

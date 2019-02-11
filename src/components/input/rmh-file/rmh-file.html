@@ -1,9 +1,9 @@
-<rmh-field ref="field" :validation="validation" :placeholder="placeholder" :required="required" class="has-rmh-file" :class="classes">
-  <label v-if="label && label !== ''">{{ label }}</label>
-  <span class="placeholder" v-if="placeholder && placeholder !== '' && model.value === ''">{{ placeholder }}</span>
+<rmh-field ref="field" v-bind="[$attrs, { validation, placeholder, required }]" class="has-rmh-file" :class="classes">
+  <label v-if="label && label !== ''" v-html="label" />
+  <span class="placeholder" v-if="placeholder && placeholder !== '' && model.value === ''" v-html="placeholder" />
   <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
-  
-  <input v-model="model.value" ref="input" class="rmh-file" v-on="$listeners" readonly v-bind="{ disabled }" @focus="focus" @blur="blur" @click="openPicker">
+
+  <input v-model="model.value" ref="input" class="rmh-file" v-on="listeners" readonly v-bind="{ disabled }" @focus="focus" @blur="blur" @click="openPicker">
 
   <input type="file" ref="inputFile" v-bind="{ disabled, multiple, accept }" @change="onChange" />
 

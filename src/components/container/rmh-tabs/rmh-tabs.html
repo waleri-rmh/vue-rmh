@@ -1,4 +1,4 @@
-<div class="rmh-tabs" :class="classes" v-bind="$attrs" v-on="$listeners">
+<div class="rmh-tabs" :class="classes" v-bind="$attrs" v-on="listeners">
   <div class="rmh-tabs-navigation">
     <rmh-tab-header v-for="(tab, index) in tabs" :key="'tab-header-' + index" v-bind="tab.$attrs" v-on="tab.$listeners"
       :active="selectedTabIndex === index" @click="setSelectedTabIndex(index)">

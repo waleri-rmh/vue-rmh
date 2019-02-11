@@ -1,4 +1,4 @@
 <div class="rmh-field" :class="[classes, { invalid: validation && validation.has }]">
   <slot></slot>
-  <span v-if="validation && validation.has" class="error">{{ validation.get }}</span>
+  <span v-if="validation && validation.has" class="error" v-html="validation.get" />
 </div>

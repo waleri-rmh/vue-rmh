@@ -1,7 +1,7 @@
 <rmh-field static class="rmh-checkbox no-field" ref="field" v-on="listeners" :class="classes">
   <div class="checkbox-container" @click.stop="toggle">
     <rmh-icon>check</rmh-icon>
-    <input type="checkbox" @focus="focus" @blur="blur" v-bind="{ id: uId, name, disabled, required, value }">
+    <input type="checkbox" @focus="focus" @blur="blur" v-bind="[$attrs, { id: uId, name, disabled, required, value }]">
   </div>
 
   <label :for="uId" v-if="$slots.default || label" @click.prevent="toggle">

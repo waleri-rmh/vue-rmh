@@ -1,6 +1,6 @@
-<rmh-field static class="rmh-radio no-field" ref="field" v-on="listeners" :class="classes">
+<rmh-field static class="rmh-radio no-field" v-bind="$attrs" ref="field" :class="classes">
   <div class="radio-container" @click.stop="toggle">
-    <input type="radio" @focus="focus" @blur="blur" v-bind="{ id: uId, name, disabled, required, value }">
+    <input type="radio" @focus="focus" @blur="blur" v-on="listeners" v-bind="{ id: uId, name, disabled, required, value }">
   </div>
 
   <label :for="uId" v-if="$slots.default || label" @click.prevent="toggle">

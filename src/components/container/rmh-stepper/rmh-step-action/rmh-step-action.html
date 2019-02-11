@@ -1,4 +1,4 @@
-<div class="rmh-step-action" :class="classes" v-bind="$attrs" v-on="$listeners">
+<div class="rmh-step-action" :class="classes" v-bind="$attrs" v-on="listeners">
   <rmh-button :disabled="prevDisabled || prevIndex(selectedStepIndex) === null" @click="prev"
     v-if="selectedStepIndex > 0">
     {{ prevLabel || _prevLabel }}

@@ -1,11 +1,11 @@
-<div v-if="isOpen || !transitionEnd" class="rmh-dialog" :class="{ 'with-divider': withDivider, closing: !transitionEnd }" v-bind="$attrs" v-on="$listeners">
-  
+<div v-if="isOpen || !transitionEnd" class="rmh-dialog" :class="{ 'with-divider': withDivider, closing: !transitionEnd }" v-bind="$attrs" v-on="listeners">
+
   <!-- WALL -->
   <div v-if="wall" class="rmh-dialog-wall" @click.stop="wallCloseTrigger" />
-  
+
   <!-- MAIN CONTAINER -->
   <div class="rmh-dialog-container">
-  
+
     <!-- CLOSE BUTTON -->
     <rmh-button v-if="!alert && !confirm" class="icon-button rmh-dialog-close" @click.stop="close">
       <rmh-icon>close</rmh-icon>
@@ -14,25 +14,25 @@
     <!-- PROP GENERATED CONTENT -->
     <rmh-dialog-header v-if="title" v-html="title" />
     <rmh-dialog-content v-if="content" v-html="content" />
-    
+
     <!-- DEFAULT SLOT -->
     <slot></slot>
-    
+
     <!-- PROP GENERATED ACTIONS -->
     <rmh-dialog-action v-if="actions" align-right>
       <rmh-button v-for="(action, index) in actions" :key="'rmh-dialog-action-' + index" :class="action.class" @click.prevent="action.trigger">{{ action.label }}</rmh-button>
     </rmh-dialog-action>
-    
+
     <!-- CONFIRM ACTIONS -->
     <rmh-dialog-action v-else-if="confirm" align-right>
       <rmh-button @click.prevent="triggerConfirm(false)">{{ cancelText || 'Abbrechen' }}</rmh-button>
       <rmh-button class="primary" @click.prevent="triggerConfirm(true)">{{ confirmText || 'Bestätigen' }}</rmh-button>
     </rmh-dialog-action>
-    
+
     <!-- ALERT ACTIONS -->
     <rmh-dialog-action v-else-if="alert" align-center>
       <rmh-button class="primary" @click.prevent="close">{{ confirmText || 'OK' }}</rmh-button>
     </rmh-dialog-action>
-  
+
   </div>
 </div>

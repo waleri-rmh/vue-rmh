@@ -1,4 +1,4 @@
-<div class="rmh-stepper" :class="classes" v-bind="$attrs" v-on="$listeners">
+<div class="rmh-stepper" :class="classes" v-bind="$attrs" v-on="listeners">
 
   <div class="rmh-stepper-navigation">
     <rmh-step-header v-for="(step, index) in steps" :disabled="step._disabled" :key="'step-header-' + index" v-bind="step.$attrs" v-on="step.$listeners"
