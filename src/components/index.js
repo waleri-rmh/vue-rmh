@@ -7,7 +7,7 @@ import rmhDialogContent from '@/components/container/rmh-dialog/rmh-dialog-conte
 import rmhDialogAction from '@/components/container/rmh-dialog/rmh-dialog-action/rmh-dialog-action'
 
 import rmhStepHeader from '@/components/container/rmh-stepper/rmh-step-header/rmh-step-header'
-import rmhStepAction  from '@/components/container/rmh-stepper/rmh-step-action/rmh-step-action'
+import rmhStepAction from '@/components/container/rmh-stepper/rmh-step-action/rmh-step-action'
 
 import rmhTabHeader from '@/components/container/rmh-tabs/rmh-tab-header/rmh-tab-header'
 

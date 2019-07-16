@@ -1,4 +1,4 @@
-<template src="./rmh-tabs.html"></template>
+<template src="./rmh-tabs.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -7,11 +7,11 @@ import { rmhTabHeader } from '@/components'
 export default {
   name: 'rmh-tabs',
 
-  mixins: [component],
-
   components: {
     rmhTabHeader
   },
+
+  mixins: [component],
 
   data: () => ({
     tabs: [],
@@ -29,21 +29,21 @@ export default {
     }
   },
 
-  mounted () {
-    this.fetchTabs()
-  },
-
   watch: {
     selectedTabIndex () {
       this.changedSelectedTab()
     }
   },
 
+  mounted () {
+    this.fetchTabs()
+  },
+
   methods: {
     setSelectedTabIndex (index) {
       this.selectedTabIndex = parseInt(index)
       this.selectedTab = this.tabs[index]
-      this.tabs.forEach((tab) => {
+      this.tabs.forEach(tab => {
         tab.hide()
         if (tab === this.selectedTab) {
           tab.show()

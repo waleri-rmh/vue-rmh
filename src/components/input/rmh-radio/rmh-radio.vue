@@ -1,4 +1,4 @@
-<template src="./rmh-radio.html"></template>
+<template src="./rmh-radio.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -11,16 +11,27 @@ import {
 export default {
   name: 'rmh-radio',
 
-  mixins: [component],
-
   components: {
     rmhField,
     rmhIcon
   },
 
+  mixins: [component],
+
+  model: {
+    prop: 'model',
+    event: 'change'
+  },
+
   props: {
-    model: [String, Number, Boolean],
-    name: [String, Number],
+    model: {
+      type: [String, Number, Boolean],
+      default: null
+    },
+    name: {
+      type: [String, Number],
+      default: null
+    },
     value: {
       type: [String, Number, Boolean],
       default: 'on'
@@ -29,15 +40,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-
-  model: {
-    prop: 'model',
-    event: 'change'
-  },
-
-  mounted () {
-    this.$refs.field.update(this.value)
   },
 
   computed: {
@@ -55,8 +57,12 @@ export default {
     }
   },
 
+  mounted () {
+    this.$refs.field.update(this.value)
+  },
+
   methods: {
-    toggle (e) {
+    toggle () {
       if (!this.disabled) {
         this.$emit('change', this.value)
       }

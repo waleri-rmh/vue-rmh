@@ -1,4 +1,4 @@
-<template src="./rmh-step.html"></template>
+<template src="./rmh-step.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -7,11 +7,11 @@ import { rmhStepAction } from '@/components'
 export default {
   name: 'rmh-step',
 
-  mixins: [component],
-
   components: {
     rmhStepAction
   },
+
+  mixins: [component],
 
   props: {
     label: {
@@ -33,6 +33,18 @@ export default {
     _disabled: false
   }),
 
+  computed: {
+    hasDefaultSlot () {
+      return !!this.$slots.default
+    },
+
+    hasCustomAction () {
+      if (!this.hasDefaultSlot) return false
+      const actions = this.$slots.default.filter(child => child.componentOptions && child.componentOptions.tag === 'rmh-step-action')
+      return actions.length > 0
+    }
+  },
+
   watch: {
     disabled (value) {
       if (value !== this._disabled)
@@ -46,18 +58,6 @@ export default {
 
   mounted () {
     this._disabled = this.disabled
-  },
-
-  computed: {
-    hasDefaultSlot () {
-      return !!this.$slots.default
-    },
-
-    hasCustomAction () {
-      if (!this.hasDefaultSlot) return false
-      const actions = this.$slots.default.filter(child => child.componentOptions && child.componentOptions.tag === 'rmh-step-action')
-      return actions.length > 0
-    }
   },
 
   methods: {

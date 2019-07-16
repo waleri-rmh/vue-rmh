@@ -1,1 +1,143 @@
-*,:after,:before{box-sizing:inherit}*>:first-child{margin-top:0}*>:last-child{margin-bottom:0}html{height:100%;box-sizing:border-box}body{min-height:100%;margin:0;position:relative;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased;font-family:Roboto,Noto Sans,-apple-system,BlinkMacSystemFont,sans-serif}a:not(.md-button){transition:.3s ease;transition-property:color,background-color,opacity}audio,canvas,embed,iframe,img,object,video{font-style:italic;vertical-align:middle}[tabindex="-1"]:focus{outline:none!important}.typo-caption{font-size:12px;font-weight:400;letter-spacing:.02em;line-height:17px}.typo-body-1{font-weight:400;line-height:20px}.typo-body-1,.typo-body-2{font-size:14px;letter-spacing:.01em}.typo-body-2{font-weight:500;line-height:24px}.typo-subheading{font-size:16px;font-weight:400;letter-spacing:.01em;line-height:24px}.typo-title{font-size:20px;font-weight:500;letter-spacing:.005em;line-height:26px}.typo-headline{font-size:24px;line-height:32px}.typo-display-1,.typo-headline{font-weight:400;letter-spacing:0}.typo-display-1{font-size:34px;line-height:40px}.typo-display-2{font-size:45px;font-weight:400;letter-spacing:0;line-height:48px}.typo-display-3{font-size:56px;font-weight:400;letter-spacing:-.005em;line-height:58px}.typo-display-4{font-size:112px;font-weight:300;letter-spacing:-.01em;line-height:112px}.ripple,.rmh-button:not(.disabled),.rmh-list-item.link,.rmh-select:not(.disabled) .rmh-select-arrow,.rmh-tab-label{position:relative}.ripple:after,.rmh-button:not(.disabled):after,.rmh-list-item.link:after,.rmh-select:not(.disabled) .rmh-select-arrow:after,.rmh-tab-label:after{content:" ";display:block;position:absolute;width:100%;height:100%;top:0;left:0;pointer-events:none;background-image:radial-gradient(circle,#000 10%,transparent 10.01%);background-repeat:no-repeat;background-position:50%;-webkit-transform:scale(10);transform:scale(10);opacity:0;transition:opacity 1s,-webkit-transform .5s;transition:transform .5s,opacity 1s;transition:transform .5s,opacity 1s,-webkit-transform .5s}.ripple:active:after,.rmh-button:not(.disabled):active:after,.rmh-list-item.link:active:after,.rmh-select:not(.disabled) .rmh-select-arrow:active:after,.rmh-tab-label:active:after{-webkit-transform:scale(0);transform:scale(0);opacity:.2;transition:0s}.ripple{overflow:hidden}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+* > :first-child {
+  margin-top: 0;
+}
+* > :last-child {
+  margin-bottom: 0;
+}
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  font-family: Roboto, 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+a:not(.md-button) {
+  transition: 0.3s ease;
+  transition-property: color, background-color, opacity;
+}
+audio,
+img,
+object,
+embed,
+canvas,
+video,
+iframe {
+  font-style: italic;
+  vertical-align: middle;
+}
+[tabindex="-1"]:focus {
+  outline: none !important;
+}
+.typo-caption {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 17px;
+}
+.typo-body-1 {
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 20px;
+}
+.typo-body-2 {
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  line-height: 24px;
+}
+.typo-subheading {
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 24px;
+}
+.typo-title {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.005em;
+  line-height: 26px;
+}
+.typo-headline {
+  font-size: 24px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 32px;
+}
+.typo-display-1 {
+  font-size: 34px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 40px;
+}
+.typo-display-2 {
+  font-size: 45px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 48px;
+}
+.typo-display-3 {
+  font-size: 56px;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+  line-height: 58px;
+}
+.typo-display-4 {
+  font-size: 112px;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  line-height: 112px;
+}
+.rmh-button:not(.disabled),
+.rmh-select:not(.disabled) .rmh-select-arrow,
+.rmh-list-item.link,
+.rmh-tab-label,
+.ripple {
+  position: relative;
+}
+.rmh-button:not(.disabled):after,
+.rmh-select:not(.disabled) .rmh-select-arrow:after,
+.rmh-list-item.link:after,
+.rmh-tab-label:after,
+.ripple:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #000 10%, transparent 10.01%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 1s;
+}
+.rmh-button:not(.disabled):active:after,
+.rmh-select:not(.disabled) .rmh-select-arrow:active:after,
+.rmh-list-item.link:active:after,
+.rmh-tab-label:active:after,
+.ripple:active:after {
+  transform: scale(0, 0);
+  opacity: 0.2;
+  transition: 0s;
+}
+.ripple {
+  overflow: hidden;
+}

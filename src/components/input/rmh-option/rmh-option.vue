@@ -1,4 +1,4 @@
-<template src="./rmh-option.html"></template>
+<template src="./rmh-option.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -7,11 +7,11 @@ import { rmhIcon } from '@/components'
 export default {
   name: 'rmh-option',
 
-  mixins: [component],
-
   components: {
     rmhIcon
   },
+
+  mixins: [component],
 
   props: {
     value: {
@@ -35,11 +35,6 @@ export default {
   data: () => ({
     parent: null
   }),
-
-  mounted () {
-    this.parent = this.parentByName('rmh-select', this)
-    this.preSelect()
-  },
 
   computed: {
     isSelected () {
@@ -72,6 +67,11 @@ export default {
         })
       }
     }
+  },
+
+  mounted () {
+    this.parent = this.parentByName('rmh-select', this)
+    this.preSelect()
   },
 
   methods: {

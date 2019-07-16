@@ -1,4 +1,4 @@
-<template src="./rmh-dialog.html"></template>
+<template src="./rmh-dialog.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -14,8 +14,6 @@ import {
 export default {
   name: 'rmh-dialog',
 
-  mixins: [component],
-
   components: {
     rmhIcon,
     rmhButton,
@@ -23,6 +21,8 @@ export default {
     rmhDialogContent,
     rmhDialogAction
   },
+
+  mixins: [component],
 
   props: {
     open: {
@@ -42,10 +42,12 @@ export default {
       default: false
     },
     title: {
-      type: String
+      type: String,
+      default: null
     },
     content: {
-      type: String
+      type: String,
+      default: null
     },
     actions: {
       type: Array,
@@ -60,10 +62,12 @@ export default {
       default: false
     },
     cancelText: {
-      type: String
+      type: String,
+      default: null
     },
     confirmText: {
-      type: String
+      type: String,
+      default: null
     }
   },
 

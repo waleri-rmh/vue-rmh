@@ -1,4 +1,4 @@
-<template src="./rmh-file.html"></template>
+<template src="./rmh-file.html" />
 
 <script>
 import {
@@ -14,20 +14,20 @@ import {
 export default {
   name: 'rmh-file',
 
-  mixins: [
-    component,
-    input
-  ],
-
   components: {
     rmhField,
     rmhIcon
   },
 
+  mixins: [
+    component,
+    input
+  ],
+
   props: {
     value: {
       type: Object,
-      default: {}
+      default: () => ({})
     },
     icon: {
       type: String,
@@ -57,15 +57,6 @@ export default {
     model: {},
     errorBlink: false
   }),
-
-  mounted () {
-    this.model = Object.assign({
-      value: '',
-      files: []
-    }, this.value)
-    this.$refs.field.update(this.model.value)
-    this.initDrop()
-  },
 
   computed: {
     classes () {
@@ -100,14 +91,24 @@ export default {
     }
   },
 
+  mounted () {
+    this.model = {
+      value: '',
+      files: [],
+      ...this.value
+    }
+    this.$refs.field.update(this.model.value)
+    this.initDrop()
+  },
+
   methods: {
-    focus (e) {
+    focus () {
       this.$refs.field.focus({
         value: this.model.value
       })
     },
 
-    blur (e) {
+    blur () {
       this.$refs.field.blur({
         value: this.model.value
       })

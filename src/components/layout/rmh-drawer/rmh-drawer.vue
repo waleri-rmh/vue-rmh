@@ -1,4 +1,4 @@
-<template src="./rmh-drawer.html"></template>
+<template src="./rmh-drawer.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -23,23 +23,13 @@ export default {
     },
     wallClick: {
       type: Function,
-      default: () => {
-        return null
-      }
+      default: () => null
     }
   },
 
   data: () => ({
     right: false
   }),
-
-  mounted () {
-    this.right = (this.$parent && this.$parent.right) || false
-  },
-
-  updated () {
-    this.right = (this.$parent && this.$parent.right) || false
-  },
 
   computed: {
     hasDefaultSlot () {
@@ -54,6 +44,14 @@ export default {
         mini: this.mini
       }
     }
+  },
+
+  mounted () {
+    this.right = (this.$parent && this.$parent.right) || false
+  },
+
+  updated () {
+    this.right = (this.$parent && this.$parent.right) || false
   }
 }
 </script>

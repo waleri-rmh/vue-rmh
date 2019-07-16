@@ -1,4 +1,4 @@
-<rmh-field ref="field" v-bind="[$attrs, { validation, placeholder, required }]" :class="classes">
+<rmh-field ref="field" v-bind="[attributes, { validation, placeholder, required }]" :class="classes">
   <label v-if="label && label !== ''" v-html="label" />
   <span class="placeholder" v-if="placeholder && placeholder !== '' && localValue === ''" v-html="placeholder" />
   <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>

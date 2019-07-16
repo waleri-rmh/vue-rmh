@@ -20,6 +20,13 @@ export default {
   computed: {
     listeners () {
       return { ...this.$listeners }
+    },
+
+    attributes () {
+      return {
+        id: this.id,
+        ...this.$attrs
+      }
     }
   },
 

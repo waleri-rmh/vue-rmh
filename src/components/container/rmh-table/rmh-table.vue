@@ -1,4 +1,4 @@
-<template src="./rmh-table.html"></template>
+<template src="./rmh-table.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -11,12 +11,12 @@ import {
 export default {
   name: 'rmh-table',
 
-  mixins: [component],
-
   components: {
     rmhRow,
     rmhCell
   },
+
+  mixins: [component],
 
   computed: {
     classes () {

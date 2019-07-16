@@ -1,4 +1,4 @@
-<template src="./rmh-button.html"></template>
+<template src="./rmh-button.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -7,11 +7,11 @@ import { rmhIcon } from '@/components'
 export default {
   name: 'rmh-button',
 
-  mixins: [component],
-
   components: {
     rmhIcon
   },
+
+  mixins: [component],
 
   props: {
     value: {
@@ -44,7 +44,7 @@ export default {
   },
 
   watch: {
-    value (val) {
+    value (value) {
       if (value !== this.localValue) {
         this.localValue = value
       }

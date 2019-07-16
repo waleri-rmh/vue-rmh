@@ -1,10 +1,12 @@
-<template src="./rmh-field.html"></template>
+<template src="./rmh-field.html" />
 
 <script>
 import { component } from '@/mixins'
 
 export default {
   name: 'rmh-field',
+
+  mixins: [component],
 
   props: {
     static: {
@@ -25,7 +27,12 @@ export default {
     }
   },
 
-  mixins: [component],
+  data: () => ({
+    focused: false,
+    filled: false,
+    errorMessage: '',
+    value: ''
+  }),
 
   computed: {
     classes () {
@@ -35,13 +42,6 @@ export default {
       }
     }
   },
-
-  data: () => ({
-    focused: false,
-    filled: false,
-    errorMessage: '',
-    value: ''
-  }),
 
   methods: {
     focus (e) {

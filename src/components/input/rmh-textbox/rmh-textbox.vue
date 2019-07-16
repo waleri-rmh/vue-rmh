@@ -1,4 +1,4 @@
-<template src="./rmh-textbox.html"></template>
+<template src="./rmh-textbox.html" />
 
 <script>
 import {
@@ -14,15 +14,15 @@ import {
 export default {
   name: 'rmh-textbox',
 
-  mixins: [
-    component,
-    input
-  ],
-
   components: {
     rmhField,
     rmhIcon
   },
+
+  mixins: [
+    component,
+    input
+  ],
 
   props: {
     value: {
@@ -41,10 +41,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-
-  mounted () {
-    this.$refs.field.update(this.value)
   },
 
   computed: {
@@ -79,6 +75,10 @@ export default {
         this.$refs.field.update(value)
       }
     }
+  },
+
+  mounted () {
+    this.$refs.field.update(this.value)
   },
 }
 </script>

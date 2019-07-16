@@ -1,4 +1,4 @@
-<button class="rmh-button" :class="{ disabled: disabled }" v-bind="[$attrs, { disabled }]" v-on="listeners">
+<button class="rmh-button" :class="{ disabled: disabled }" v-bind="[attributes, { disabled }]" v-on="listeners">
   {{ localValue }}
   <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>
   <slot v-if="!localValue"></slot>

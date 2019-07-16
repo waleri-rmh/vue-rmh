@@ -1,4 +1,4 @@
-<template src="./rmh-app.html"></template>
+<template src="./rmh-app.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -12,13 +12,13 @@ import {
 export default {
   name: 'rmh-app',
 
-  mixins: [component],
-
   components: {
     rmhToolbar,
     rmhDrawer,
     rmhContent
   },
+
+  mixins: [component],
 
   props: {
     fixed: {

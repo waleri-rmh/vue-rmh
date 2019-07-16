@@ -1,4 +1,4 @@
-<template src="./rmh-stepper.html"></template>
+<template src="./rmh-stepper.html" />
 
 <script>
 import { component } from '@/mixins'
@@ -10,6 +10,11 @@ import {
 
 export default {
   name: 'rmh-stepper',
+
+  components: {
+    rmhStepHeader,
+    rmhButton
+  },
 
   mixins: [component],
 
@@ -28,11 +33,6 @@ export default {
     }
   },
 
-  components: {
-    rmhStepHeader,
-    rmhButton
-  },
-
   data: () => ({
     steps: [],
     selectedStep: null,
@@ -49,14 +49,14 @@ export default {
     }
   },
 
-  mounted () {
-    this.fetchSteps()
-  },
-
   watch: {
     selectedStepIndex () {
       this.changedSelectedStep()
     }
+  },
+
+  mounted () {
+    this.fetchSteps()
   },
 
   methods: {
@@ -65,7 +65,7 @@ export default {
         return
       this.selectedStepIndex = parseInt(index)
       this.selectedStep = this.steps[index]
-      this.steps.forEach((step) => {
+      this.steps.forEach(step => {
         step.hide()
         if (step === this.selectedStep) {
           step.show()

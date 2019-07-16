@@ -1,4 +1,4 @@
-<template src="./rmh-select.html"></template>
+<template src="./rmh-select.html" />
 
 <script>
 import {
@@ -14,15 +14,15 @@ import {
 export default {
   name: 'rmh-select',
 
-  mixins: [
-    component,
-    input
-  ],
-
   components: {
     rmhField,
     rmhIcon
   },
+
+  mixins: [
+    component,
+    input
+  ],
 
   props: {
     value: {
@@ -47,11 +47,6 @@ export default {
     },
     open: false
   }),
-
-  mounted () {
-    this.localValueText = this.getText(this.value)
-    this.$refs.field.update(this.value)
-  },
 
   computed: {
     classes () {
@@ -88,14 +83,19 @@ export default {
     }
   },
 
+  mounted () {
+    this.localValueText = this.getText(this.value)
+    this.$refs.field.update(this.value)
+  },
+
   methods: {
-    focus (e) {
+    focus () {
       if (this.disabled) return
       this.open = true
       this.$refs.field.focus(this.$refs.input)
     },
 
-    blur (e) {
+    blur () {
       if (this.disabled) return
       setTimeout(() => {
         this.open = false
@@ -103,7 +103,7 @@ export default {
       this.$refs.field.blur(this.$refs.input)
     },
 
-    fakeFocus (e) {
+    fakeFocus () {
       if (this.disabled) return
       if (!this.open) this.$refs.input.focus()
     },

@@ -1,4 +1,4 @@
-<template src="./rmh-checkbox.html"></template>
+<template src="./rmh-checkbox.html" />
 
 <script>
 import {
@@ -14,19 +14,30 @@ import {
 export default {
   name: 'rmh-checkbox',
 
-  mixins: [
-    component,
-    input
-  ],
-
   components: {
     rmhField,
     rmhIcon
   },
 
+  mixins: [
+    component,
+    input
+  ],
+
+  model: {
+    prop: 'model',
+    event: 'change'
+  },
+
   props: {
-    model: [String, Boolean, Object, Number, Array],
-    name: [String, Number],
+    model: {
+      type: [String, Boolean, Object, Number, Array],
+      default: null
+    },
+    name: {
+      type: [String, Number],
+      default: null
+    },
     value: {
       type: [String, Boolean, Object, Number],
       default: 'on'
@@ -35,15 +46,6 @@ export default {
       type: Boolean,
       default: false
     }
-  },
-
-  model: {
-    prop: 'model',
-    event: 'change'
-  },
-
-  mounted () {
-    this.$refs.field.update(this.value)
   },
 
   computed: {
@@ -75,6 +77,10 @@ export default {
         'inline': this.inline
       }
     }
+  },
+
+  mounted () {
+    this.$refs.field.update(this.value)
   },
 
   methods: {
@@ -110,7 +116,7 @@ export default {
       this.$emit('change', !this.model)
     },
 
-    toggle (e) {
+    toggle () {
       if (!this.disabled) {
         if (this.isModelArray) {
           this.handleArrayCheckbox()

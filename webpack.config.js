@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const fs = require('fs')
 const path = require('path')
 const UglifyPlugin = require('uglify-es-webpack-plugin')
@@ -11,12 +10,13 @@ function resolve (dir) {
 }
 
 module.exports = {
+  mode: 'production',
   entry: {
     'vue-rmh-components': './index.js',
     'main': './main.styl'
   },
   output: {
-    filename: 'dist/[name].js',
+    filename: './[name].js',
     libraryTarget: 'umd',
     library: 'vue-rmh-components',
     umdNamedDefine: true
@@ -30,45 +30,71 @@ module.exports = {
     }
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: [
-            /node_modules\/(?!ing-).*/
-        ]
-      },
-      {
-        test: /\.styl$/,
-        loader: 'style-loader!css-loader!stylus-loader'
-      },
-      {
-        test: /main.styl$/,
-        loader: ExtractTextPlugin.extract({
-          use: [{
-            loader: 'css-loader',
-            options: { minimize: true }
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              sourceMap: true,
-              plugins: (loader) => [
-                require('postcss-smart-import'),
-                require('autoprefixer'),
-              ]
-            }
-          },
-          { loader: 'stylus-loader' }]
-        })
+        test: /\.(js|vue)$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        use: {
+          loader: 'eslint-loader',
+          options: {
+            formatter: require('./eslint-formatter.js')
+          }
+        }
       },
       {
         test: /\.vue$/,
-        loader: 'vue-loader'
+        use: {
+          loader: 'vue-loader',
+          options: {
+            extractCSS: process.env.NODE_ENV === 'production',
+            loaders: {
+              sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax=1',
+              scss: 'vue-style-loader!css-loader!sass-loader',
+              stylus: 'vue-style-loader!css-loader!stylus-loader'
+            }
+          }
+        }
+      },
+      {
+        test: /\.html$/,
+        use: 'vue-html-loader'
+      },
+      {
+        test: /\.js$/,
+        use: 'babel-loader',
+        exclude: /node_modules/
+      },
+      {
+        test: /\.styl$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'stylus-loader'
+        ]
+      },
+      {
+        test: /main.styl$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            'css-loader',
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: false,
+                plugins: (loader) => [
+                  require('postcss-smart-import'),
+                  require('autoprefixer'),
+                ]
+              }
+            },
+            'stylus-loader'
+          ]
+        })
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url-loader'
+        use: 'url-loader'
       }
     ]
   },
@@ -78,9 +104,9 @@ module.exports = {
       mangle: true
     }),
     new ExtractTextPlugin({
-      filename: 'dist/[name].min.css',
+      filename: './[name].min.css',
       allChunks: true
     }),
-    new WebpackDeletePlugin(['./dist/main.js'])
+    new WebpackDeletePlugin(['./main.js'])
   ]
 }

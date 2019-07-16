@@ -1,4 +1,4 @@
-<template src="./rmh-container.html"></template>
+<template src="./rmh-container.html" />
 
 <script>
 import { component } from '@/mixins'
