@@ -1,10 +1,12 @@
 export default {
   name: 'rmh-validator',
 
-  data: () => ({
-    validator: null,
-    errors: {}
-  }),
+  data () {
+    return {
+      validator: null,
+      errors: {}
+    }
+  },
 
   created () {
     this.validator = {

@@ -27,9 +27,11 @@ export default {
     }
   },
 
-  data: () => ({
-    right: false
-  }),
+  data () {
+    return {
+      right: false
+    }
+  },
 
   computed: {
     hasDefaultSlot () {

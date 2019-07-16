@@ -33,11 +33,13 @@ export default {
     }
   },
 
-  data: () => ({
-    steps: [],
-    selectedStep: null,
-    selectedStepIndex: -1
-  }),
+  data () {
+    return {
+      steps: [],
+      selectedStep: null,
+      selectedStepIndex: -1
+    }
+  },
 
   computed: {
     hasDefaultSlot () {
@@ -61,7 +63,7 @@ export default {
 
   methods: {
     setSelectedStepIndex (index) {
-      if (index === null || (index !== null && this.steps[index]._disabled))
+      if (index === null || (index !== null && this.steps[index].isDisabled))
         return
       this.selectedStepIndex = parseInt(index)
       this.selectedStep = this.steps[index]
@@ -131,7 +133,7 @@ export default {
       let prevIndex = current - 1
       if (prevIndex < 0)
         return null
-      if (this.steps[prevIndex] && this.steps[prevIndex]._disabled === false)
+      if (this.steps[prevIndex] && this.steps[prevIndex].isDisabled === false)
         return prevIndex
       else return this.prevIndex(prevIndex)
     },
@@ -142,7 +144,7 @@ export default {
       let nextIndex = current + 1
       if (nextIndex > this.steps.length - 1)
         return null
-      if (this.steps[nextIndex] && this.steps[nextIndex]._disabled === false)
+      if (this.steps[nextIndex] && this.steps[nextIndex].isDisabled === false)
         return nextIndex
       else return this.nextIndex(nextIndex)
     }

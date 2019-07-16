@@ -13,9 +13,11 @@ export default {
     }
   },
 
-  data: () => ({
-    uId: null
-  }),
+  data () {
+    return {
+      uId: null
+    }
+  },
 
   computed: {
     listeners () {

@@ -32,9 +32,11 @@ export default {
     }
   },
 
-  data: () => ({
-    parent: null
-  }),
+  data () {
+    return {
+      parent: null
+    }
+  },
 
   computed: {
     isSelected () {

@@ -71,10 +71,12 @@ export default {
     }
   },
 
-  data: () => ({
-    transitionEnd: true,
-    isOpen: this.open
-  }),
+  data () {
+    return {
+      transitionEnd: true,
+      isOpen: this.open
+    }
+  },
 
   watch: {
     open (value) {

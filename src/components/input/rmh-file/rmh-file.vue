@@ -51,12 +51,14 @@ export default {
     }
   },
 
-  data: () => ({
-    dropEntered: false,
-    files: [],
-    model: {},
-    errorBlink: false
-  }),
+  data () {
+    return {
+      dropEntered: false,
+      files: [],
+      model: {},
+      errorBlink: false
+    }
+  },
 
   computed: {
     classes () {

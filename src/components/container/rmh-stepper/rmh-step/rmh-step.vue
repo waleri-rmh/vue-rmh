@@ -28,10 +28,12 @@ export default {
     }
   },
 
-  data: () => ({
-    visible: false,
-    _disabled: false
-  }),
+  data () {
+    return {
+      visible: false,
+      isDisabled: false
+    }
+  },
 
   computed: {
     hasDefaultSlot () {
@@ -47,17 +49,17 @@ export default {
 
   watch: {
     disabled (value) {
-      if (value !== this._disabled)
-        this._disabled = value
+      if (value !== this.isDisabled)
+        this.isDisabled = value
     },
-    _disabled (value) {
+    isDisabled (value) {
       if (value !== this.disabled)
         this.$emit('update:disabled', value)
     }
   },
 
   mounted () {
-    this._disabled = this.disabled
+    this.isDisabled = this.disabled
   },
 
   methods: {
@@ -70,13 +72,13 @@ export default {
     },
 
     disable () {
-      this._disabled = true
-      this.$parent._disabled = true
+      this.isDisabled = true
+      this.$parent.isDisabled = true
     },
 
     enable () {
-      this._disabled = false
-      this.$parent._disabled = false
+      this.isDisabled = false
+      this.$parent.isDisabled = false
     },
 
     update (action) {

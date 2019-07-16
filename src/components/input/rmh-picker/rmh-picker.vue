@@ -39,14 +39,16 @@ export default {
     }
   },
 
-  data: () => ({
-    localValueText: '',
-    selectedItem: {
-      value: null,
-      text: ''
-    },
-    open: false
-  }),
+  data () {
+    return {
+      localValueText: '',
+      selectedItem: {
+        value: null,
+        text: ''
+      },
+      open: false
+    }
+  },
 
   computed: {
     classes () {

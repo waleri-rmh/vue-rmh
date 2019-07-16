@@ -27,12 +27,14 @@ export default {
     }
   },
 
-  data: () => ({
-    focused: false,
-    filled: false,
-    errorMessage: '',
-    value: ''
-  }),
+  data () {
+    return {
+      focused: false,
+      filled: false,
+      errorMessage: '',
+      value: ''
+    }
+  },
 
   computed: {
     classes () {

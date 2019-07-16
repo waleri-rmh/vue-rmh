@@ -13,11 +13,13 @@ export default {
 
   mixins: [component],
 
-  data: () => ({
-    tabs: [],
-    selectedTab: null,
-    selectedTabIndex: -1
-  }),
+  data () {
+    return {
+      tabs: [],
+      selectedTab: null,
+      selectedTabIndex: -1
+    }
+  },
 
   computed: {
     hasDefaultSlot () {

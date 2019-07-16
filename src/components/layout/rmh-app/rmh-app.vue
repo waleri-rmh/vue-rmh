@@ -35,11 +35,13 @@ export default {
     }
   },
 
-  data: () => ({
-    toolbar: null,
-    drawer: null,
-    content: null
-  }),
+  data () {
+    return {
+      toolbar: null,
+      drawer: null,
+      content: null
+    }
+  },
 
   computed: {
     hasDefaultSlot () {
