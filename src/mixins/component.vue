@@ -63,9 +63,9 @@ export default {
     mutable (value) {
       if (value === null) return null
       if (value === undefined) return undefined
-      if (typeof value === 'string') return new String(value)
-      if (typeof value === 'number') return new Number(value)
-      if (typeof value === 'boolean') return new Boolean(value)
+      if (typeof value === 'string') return new String(value).valueOf()
+      if (typeof value === 'number') return new Number(value).valueOf()
+      if (typeof value === 'boolean') return new Boolean(value).valueOf()
       if (typeof value === 'object') return { ...value }
       if (typeof value === 'array') return [ ...value ]
       return JSON.parse(JSON.stringify(value))
