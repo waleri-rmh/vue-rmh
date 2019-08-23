@@ -1,5 +1,5 @@
 <rmh-field class="rmh-picker" v-bind="[attributes, { validation, placeholder, required }]" :class="classes" ref="field">
-  <rmh-picker-overlay v-bind="{ locale, selected, preview, setPreview, setSelected, applyPreview, current }" @updated="fakeFocus" />
+  <rmh-picker-overlay v-bind="{ locale, selected, preview, setPreview, setSelected, applyPreview, current, disabledDates, getFullObject }" @updated="fakeFocus" />
   <label v-if="label">{{ label }}</label>
   <span class="placeholder" v-if="placeholder && placeholder !== '' && localValue === ''">{{ placeholder }}</span>
   <rmh-icon v-if="icon !== ''" class="inline">{{ icon }}</rmh-icon>

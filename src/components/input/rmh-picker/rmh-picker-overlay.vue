@@ -52,7 +52,15 @@ export default {
     applyPreview: {
       type: Function,
       default: () => null
-    }
+    },
+    disabledDates: {
+      type: Function,
+      default: null
+    },
+    getFullObject: {
+      type: Function,
+      default: null
+    },
   },
 
   data: () => ({
@@ -100,6 +108,8 @@ export default {
   methods: {
     selectDay (day) {
       const result = this.preview.date.moment.date(day)
+      if (this.disabledDates && this.disabledDates(this.getFullObject(result)))
+        return
       this.setPreview(result)
       this.applyPreview()
       this.$emit('updated')
@@ -190,12 +200,12 @@ export default {
     },
 
     getDayClasses (day, add = 0) {
-      const weekendDateMoment = this.preview.date.moment.clone().add('month', add).date(day)
-      const weekendDate = weekendDateMoment.day()
+      const thisDate = this.preview.date.moment.clone().add('month', add).date(day)
       return {
-        weekend: weekendDate === 0 || weekendDate === 6,
-        selected: this.selected.date.moment.clone().format('DD.MM.YYY') === weekendDateMoment.clone().format('DD.MM.YYY'),
-        today: this.selected.date.moment.clone().format('DD.MM.YYY') === weekendDateMoment.clone().format('DD.MM.YYY')
+        weekend: thisDate.day() === 0 || thisDate.day() === 6,
+        selected: this.selected.date.moment.clone().format('DD.MM.YYY') === thisDate.clone().format('DD.MM.YYY'),
+        today: this.selected.date.moment.clone().format('DD.MM.YYY') === thisDate.clone().format('DD.MM.YYY'),
+        disabled: this.disabledDates ? this.disabledDates(this.getFullObject(thisDate)) : false
       }
     },
 

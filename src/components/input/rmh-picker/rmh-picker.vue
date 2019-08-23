@@ -55,6 +55,10 @@ export default {
     bordered: {
       type: Boolean,
       default: false
+    },
+    disabledDates: {
+      type: Function,
+      default: null
     }
   },
 
