@@ -1,0 +1,61 @@
+<div @click="doNothing" v-if="selected" class="rmh-picker-overlay">
+  <div class="rmh-picker-overlay-left">
+    <span>{{ selected.year }}</span>
+    <span>{{ selected.day.shortName }},</span>
+    <span>{{ selected.month.shortName }} {{ selected.day.value }}</span>
+  </div>
+  <div class="rmh-picker-overlay-right">
+
+    <div @scroll="yearScrolling" ref="years" v-if="view === 'years'" class="rmh-picker-overlay-right-layer-years">
+      <div :ref="`year-item-${year}`" @click="selectYear(year)" class="year" :class="getYearClasses(year)" v-for="year in years" :key="`year-${year}`">
+        {{ year }}
+      </div>
+    </div>
+
+    <div v-else-if="view === 'months'" class="rmh-picker-overlay-right-layer-months">
+      <div @click="switchView('years')" class="layer-input">
+        <span>{{ preview.year }}</span>
+      </div>
+      <div @click="selectMonth(month)" class="month" :class="getMonthClasses(month)" v-for="(month, index) in months" :key="`month-${index}`">
+        {{ month }}
+      </div>
+    </div>
+
+    <div v-else-if="view === 'days'" class="rmh-picker-overlay-right-layer-days">
+      <div class="rmh-picker-overlay-header">
+        <rmh-button class="primary icon-button" @click="prevMonth()">
+          <rmh-icon>arrow_back_ios</rmh-icon>
+        </rmh-button>
+        <div @click="switchView('months')" class="layer-input">
+          <span ref="input-preview">{{ preview.month.name }} {{ preview.year }}</span>
+        </div>
+        <rmh-button class="primary icon-button" @click="nextMonth()">
+          <rmh-icon>arrow_forward_ios</rmh-icon>
+        </rmh-button>
+      </div>
+      <div class="rmh-picker-overlay-days-headline">
+        <div class="day">Mo</div>
+        <div class="day">Di</div>
+        <div class="day">Mi</div>
+        <div class="day">Do</div>
+        <div class="day">Fr</div>
+        <div class="day weekend">Sa</div>
+        <div class="day weekend">So</div>
+      </div>
+      <div class="rmh-picker-overlay-days">
+        <div v-for="day in lastDaysPrevMonth" :key="`empty-pm-day-${day}`"
+          class="day disabled" :class="getDayClasses(day, -1)">
+          {{ day }}
+        </div>
+        <div class="day" v-for="day in daysInMonth" :key="`day-${day}`"
+          @click="selectDay(day)" :class="getDayClasses(day, 0)">
+          {{ day }}
+        </div>
+        <div v-for="day in firstDaysNextMonth" :key="`empty-nm-day-${day}`"
+          class="day disabled" :class="getDayClasses(day, 1)">
+          {{ day }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

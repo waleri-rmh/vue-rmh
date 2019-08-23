@@ -1,20 +1,31 @@
 <template src="./rmh-picker.html" />
 
 <script>
+import moment from 'moment'
+
 import {
   component,
   input
 } from '@/mixins'
 
 import {
+  rmhPickerOverlay,
+  rmhButton,
   rmhField,
   rmhIcon
 } from '@/components'
+
+const config = {
+  format: 'YYYY-MM-DD',
+  locale: 'en'
+}
 
 export default {
   name: 'rmh-picker',
 
   components: {
+    rmhPickerOverlay,
+    rmhButton,
     rmhField,
     rmhIcon
   },
@@ -26,8 +37,16 @@ export default {
 
   props: {
     value: {
-      type: [String, Number, Object],
+      type: [String],
       default: null
+    },
+    format: {
+      type: [String],
+      default: config.format
+    },
+    locale: {
+      type: [String],
+      default: config.locale
     },
     icon: {
       type: String,
@@ -39,16 +58,12 @@ export default {
     }
   },
 
-  data () {
-    return {
-      localValueText: '',
-      selectedItem: {
-        value: null,
-        text: ''
-      },
-      open: false
-    }
-  },
+  data: () => ({
+    open: false,
+    selected: null,
+    preview: null,
+    forceFocus: false,
+  }),
 
   computed: {
     classes () {
@@ -59,6 +74,11 @@ export default {
         'disabled': this.disabled,
         'required': this.required
       }
+    },
+
+    current () {
+      const current = moment().locale(this.locale)
+      return this.getFullObject(current)
     },
 
     localValue: {
@@ -78,15 +98,13 @@ export default {
 
   watch: {
     value (value) {
-      if (value !== this.localValue) {
-        this.localValueText = this.getText(value)
-        this.$refs.field.update(value)
-      }
+      this.setDate(value)
+      this.$refs.field.update(value)
     }
   },
 
   mounted () {
-    this.localValueText = this.getText(this.value)
+    this.setDate(this.value)
     this.$refs.field.update(this.value)
   },
 
@@ -100,22 +118,68 @@ export default {
     blur () {
       if (this.disabled) return
       setTimeout(() => {
-        this.open = false
+        if (!this.forceFocus) {
+          this.open = false
+          this.$refs.field.blur(this.$refs.input)
+        } else {
+          this.$refs.input.focus()
+          this.forceFocus = false
+        }
       }, 300)
-      this.$refs.field.blur(this.$refs.input)
     },
 
     fakeFocus () {
       if (this.disabled) return
-      if (!this.open) this.$refs.input.focus()
+      this.forceFocus = true
     },
 
-    select (item) {
-      this.selectedItem = item
-      this.localValue = item.value
-      this.localValueText = this.getText(item.value)
-      this.$refs.field.update(item.value)
-      this.open = false
+    setDate (value = null) {
+      const asMoment = !value
+        ? moment().locale(this.locale || config.locale)
+        : moment(value, this.format || config.format).locale(this.locale || config.locale)
+      this.setSelected(asMoment)
+      if (!value) {
+        this.$refs.field.update(value)
+      }
+    },
+
+    getFullObject (value) {
+      return {
+        day: {
+          value: value.date(),
+          fullValue: value.format('DD'),
+          name: value.format('dddd'),
+          shortName: value.format('ddd')
+        },
+        month: {
+          value: value.month() + 1,
+          fullValue: value.format('MM'),
+          name: value.format('MMMM'),
+          shortName: value.format('MMM')
+        },
+        year: value.year(),
+        date: {
+          moment: value,
+          timestamp: value.unix(),
+          string: value.format(this.format),
+          config: value._locale
+        }
+      }
+    },
+
+    setSelected (value) {
+      this.selected = value ? this.getFullObject(value) : null
+      this.setPreview(this.selected.date.moment)
+      this.localValue = this.selected.date.string
+      this.$emit('change', this.selected)
+    },
+
+    setPreview (value) {
+      this.preview = value ? this.getFullObject(value) : null
+    },
+
+    applyPreview () {
+      this.setSelected(this.preview.date.moment)
     },
 
     getText (value) {

@@ -18,6 +18,8 @@ import rmhToolbar from '@/components/layout/rmh-toolbar/rmh-toolbar'
 import rmhDrawer from '@/components/layout/rmh-drawer/rmh-drawer'
 import rmhContent from '@/components/layout/rmh-content/rmh-content'
 
+import rmhPickerOverlay from '@/components/input/rmh-picker/rmh-picker-overlay'
+
 export {
   rmhIcon,
   rmhField,
@@ -32,5 +34,6 @@ export {
   rmhCell,
   rmhToolbar,
   rmhDrawer,
-  rmhContent
+  rmhContent,
+  rmhPickerOverlay
 }

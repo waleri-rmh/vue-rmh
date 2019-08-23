@@ -16,18 +16,20 @@
     font-weight: inherit
     cursor: pointer
 
-  .options
+  .rmh-picker-overlay
     z-index: 999
     display: flex
     align-self: flex-start
-    flex-direction: column
+    flex-direction: row
     position: absolute
     left: 0
     right: 0
+    min-width: 420px
+    max-width: 420px
     margin-top: 30px
     background: rmh-color-white
     border: 1px solid transparent
-    border-radius: 0 0 5px 5px
+    border-radius: 0 0 3px 3px
     color: inherit
     transition: .3s ease
     height: auto
@@ -35,37 +37,169 @@
     overflow: hidden
     opacity: 0
 
-  .rmh-select-arrow
-    color: rmh-color-default-lighter
-    font-size: 22px
-    margin-right: 5px
-    transition: .6s ease
-    cursor: pointer
-    overflow: hidden
+    > div
+      display: flex
+      flex-direction: column
+      box-sizing: border-box
+
+    &-left
+      background: #479ee8
+      color: #fff
+      min-width: 150px
+      max-width: 150px
+      font-weight: bold
+      font-size: 25px
+      padding: 10px 15px
+
+      span:nth-child(1)
+        font-size: 18px
+        color: rgba(255, 255, 255, .7)
+
+    &-right
+      flex: 1
+      overflow: hidden
+      max-height: 300px
+      transition: .5s ease
+      min-width: 270px
+      max-width: 270px
+
+      .layer-input
+        cursor: pointer
+        flex: 1
+        text-align: center
+        height: 30px
+        border-radius: 3px
+        background: rmh-color-grey-lighter
+        overflow: hidden
+
+      &-layer-years
+        padding: 5px
+        overflow: auto
+
+        .year
+          flex: 1
+          display: flex
+          align-items: center
+          justify-content: center
+          border-radius: 3px
+          cursor: pointer
+          padding: 10px 0
+
+          &:hover
+            color: rmh-color-primary
+            border-radius: 3px
+
+          &.selected
+            font-weight: 700
+
+      &-layer-months
+        display: flex
+        flex-wrap: wrap
+        padding: 5px
+
+        .layer-input
+          flex: 0 1 100%
+
+        .month
+          flex: 0 1 calc(100% / 3)
+          display: flex
+          align-items: center
+          justify-content: center
+          height: 30px
+          min-height: 30px
+          max-height: 30px
+          border-radius: 3px
+          margin: 10px 0
+          cursor: pointer
+          transition: .3s ease
+
+          &:hover
+            background: rmh-color-grey-lighter
+            border-radius: 3px
+
+          &.selected
+            background: rmh-color-primary
+            color: rmh-color-white
+
+    &-header
+      display: flex
+      flex-direction: row
+      align-items: center
+      padding-bottom: 10px
+
+      > button
+        width: 30px
+        max-width: 30px
+        height: 30px
+        max-height: 30px
+        border-radius: 3px
+
+    .day
+      flex: 0 1 calc(100% / 7)
+      display: flex
+      align-items: center
+      justify-content: center
+      width: 30px
+      min-width: 30px
+      height: 30px
+      min-height: 30px
+      max-height: 30px
+      border-radius: 3px
+
+    &-days
+      display: flex
+      flex-wrap: wrap
+      padding: 5px
+
+      &.to-left
+
+      .day
+        cursor: pointer
+
+        &.weekend
+          background: rmh-color-light-yellow
+          border-radius: 0
+
+        &:not(.disabled):not(.selected):not(.today):hover
+          background: rmh-color-grey-lighter
+          border-radius: 3px
+
+        &.today
+          background: rmh-color-green
+          color: rmh-color-white
+
+        &.selected
+          background: rmh-color-primary
+          color: rmh-color-white
+
+        &.disabled
+          color: rmh-color-grey
+          cursor: default
+
+      &-headline
+        display: flex
+        padding: 0 5px
+
+        .day
+          color: rmh-color-default-lighter
 
   &.open
-    .options
+    .rmh-picker-overlay
       opacity: 1
-      padding: 5px 0
       transition: .5s ease
-      max-height: 200px
+      max-height: 500px
       overflow: auto
       box-shadow: 0 10px 20px -5px rmh-color-grey
       border-color: rmh-color-grey
       border-top: 1px solid rmh-color-primary
 
-    .rmh-icon.rmh-select-arrow
-      transform: rotateX(180deg)
-      color: rmh-color-primary
-
   &:not(.open)
-    .options
+    .rmh-picker-overlay
       pointer-events: none
 
   &.disabled
     cursor: default
 
     input
-    .rmh-select-arrow
       cursor: default
       color: rmh-color-grey
