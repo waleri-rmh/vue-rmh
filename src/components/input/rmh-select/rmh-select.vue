@@ -81,6 +81,7 @@ export default {
       if (value !== this.localValue) {
         this.localValueText = this.getText(value)
         this.$refs.field.update(value)
+        this.$emit('input', value)
       }
     }
   },
