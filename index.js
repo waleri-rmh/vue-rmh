@@ -3,7 +3,7 @@ import 'es6-promise/auto'
 const validator = require('./src/functional/rmh-validator.js')
 const modules = require.context('./src/components', true, /\.vue$/)
 
-const rmhPlugin = {
+export default {
   install (Vue) {
     Vue.mixin(validator.default)
     modules.keys().forEach(key => {
@@ -13,4 +13,3 @@ const rmhPlugin = {
   }
 }
 
-export default rmhPlugin
