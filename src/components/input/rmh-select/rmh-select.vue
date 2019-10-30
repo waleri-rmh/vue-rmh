@@ -41,7 +41,6 @@ export default {
 
   data () {
     return {
-      localValueText: '',
       selectedItem: {
         value: null,
         text: ''
@@ -73,13 +72,16 @@ export default {
           }
         })
       }
+    },
+
+    valueText () {
+      return this.value ? (this.value.text || this.value.toString()) : null
     }
   },
 
   watch: {
     value (value) {
       if (value !== this.localValue) {
-        this.localValueText = this.getText(value)
         this.$refs.field.update(value)
         this.$emit('change', value)
       }
@@ -87,7 +89,6 @@ export default {
   },
 
   mounted () {
-    this.localValueText = this.getText(this.value)
     this.$refs.field.update(this.value)
   },
 
@@ -114,13 +115,8 @@ export default {
     select (item) {
       this.selectedItem = item
       this.localValue = item.value
-      this.localValueText = this.getText(item.value)
       this.$refs.field.update(item.value)
       this.open = false
-    },
-
-    getText (value) {
-      return value ? (value.text || value.toString()) : null
     }
   }
 }
